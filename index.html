@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1769ff">
+<title>English ↔ Uzbek</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#f4f7fc;
+    color:#172033;
+}
+
+button,input,textarea{
+    font:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+.app{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    background:#f7f9fd;
+    position:relative;
+    overflow:hidden;
+}
+
+/* HEADER */
+.header{
+    padding:22px 20px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo-title{
+    font-size:23px;
+    font-weight:800;
+}
+
+.logo-title span{
+    color:#1670ff;
+}
+
+.subtitle{
+    font-size:12px;
+    color:#8b95a7;
+    margin-top:3px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    background:white;
+    box-shadow:0 5px 18px rgba(30,60,100,.08);
+    font-size:20px;
+}
+
+/* PAGES */
+.page{
+    display:none;
+    padding:0 18px 100px;
+}
+
+.page.active{
+    display:block;
+}
+
+/* LANGUAGE SWITCH */
+.language-switch{
+    background:#e8edf6;
+    padding:4px;
+    border-radius:14px;
+    display:flex;
+    margin:8px 0 15px;
+}
+
+.language-switch button{
+    flex:1;
+    padding:11px 5px;
+    border-radius:11px;
+    background:transparent;
+    color:#778196;
+    font-size:13px;
+    font-weight:700;
+}
+
+.language-switch button.active{
+    background:#1670ff;
+    color:white;
+    box-shadow:0 4px 10px rgba(22,112,255,.25);
+}
+
+/* TRANSLATOR CARD */
+.card{
+    background:white;
+    border-radius:22px;
+    padding:17px;
+    box-shadow:0 8px 28px rgba(30,55,90,.07);
+    margin-bottom:13px;
+}
+
+.card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.lang-name{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:750;
+}
+
+.flag{
+    font-size:23px;
+}
+
+.clear{
+    background:none;
+    color:#a2aaba;
+    font-size:20px;
+}
+
+textarea{
+    width:100%;
+    min-height:130px;
+    resize:none;
+    border:0;
+    outline:none;
+    font-size:18px;
+    line-height:1.5;
+    color:#20283a;
+    background:transparent;
+}
+
+textarea::placeholder{
+    color:#b7bfcc;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#8d98a9;
+}
+
+.small-actions{
+    display:flex;
+    gap:7px;
+}
+
+.small-action{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:#eef3fa;
+    color:#45617f;
+    font-size:17px;
+}
+
+/* SWAP */
+.swap-wrap{
+    display:flex;
+    justify-content:center;
+    height:0;
+    position:relative;
+    z-index:3;
+}
+
+.swap{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#1670ff;
+    color:white;
+    font-size:21px;
+    box-shadow:0 8px 18px rgba(22,112,255,.35);
+    transform:translateY(-50%);
+}
+
+/* RESULT */
+.result{
+    min-height:150px;
+}
+
+.result-text{
+    font-size:19px;
+    line-height:1.5;
+    min-height:80px;
+    color:#172033;
+}
+
+.empty-result{
+    color:#b2bac8;
+    text-align:center;
+    padding-top:25px;
+    font-size:14px;
+}
+
+.result-actions{
+    display:flex;
+    border-top:1px solid #edf0f5;
+    padding-top:12px;
+    gap:8px;
+}
+
+.result-actions button{
+    flex:1;
+    background:#f1f5fb;
+    color:#52637c;
+    padding:10px 5px;
+    border-radius:12px;
+    font-size:12px;
+}
+
+/* MAIN BUTTON */
+.translate-btn{
+    width:100%;
+    background:#1670ff;
+    color:white;
+    padding:16px;
+    border-radius:17px;
+    font-weight:750;
+    font-size:16px;
+    box-shadow:0 8px 18px rgba(22,112,255,.25);
+    margin:3px 0 15px;
+}
+
+.translate-btn:active{
+    transform:scale(.98);
+}
+
+/* QUICK WORDS */
+.section-title{
+    font-size:15px;
+    font-weight:800;
+    margin:20px 3px 10px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.quick{
+    background:white;
+    border-radius:15px;
+    padding:14px;
+    box-shadow:0 5px 18px rgba(30,55,90,.05);
+}
+
+.quick b{
+    display:block;
+    margin-bottom:4px;
+}
+
+.quick span{
+    color:#8b96a8;
+    font-size:13px;
+}
+
+/* SAVED/HISTORY */
+.list-item{
+    background:white;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:9px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 5px 18px rgba(30,55,90,.05);
+}
+
+.word-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.word-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.word-main{
+    font-weight:750;
+}
+
+.word-sub{
+    color:#8d98a9;
+    font-size:13px;
+    margin-top:3px;
+}
+
+.delete-btn{
+    background:#fff0f0;
+    color:#e54848;
+    width:36px;
+    height:36px;
+    border-radius:11px;
+}
+
+.empty-list{
+    text-align:center;
+    padding:60px 20px;
+    color:#9ca6b7;
+}
+
+.empty-list div{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+/* DICTIONARY */
+.search{
+    width:100%;
+    padding:15px 17px;
+    border:0;
+    outline:none;
+    background:white;
+    border-radius:16px;
+    box-shadow:0 5px 18px rgba(30,55,90,.06);
+    margin-bottom:12px;
+}
+
+.dictionary-card{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 7px 20px rgba(30,55,90,.06);
+}
+
+.dictionary-word{
+    font-size:24px;
+    font-weight:800;
+}
+
+.part{
+    color:#8d98a9;
+    font-size:13px;
+    margin:5px 0 13px;
+}
+
+.meaning{
+    background:#f1f5fb;
+    border-radius:14px;
+    padding:13px;
+    margin-top:9px;
+}
+
+.example{
+    margin-top:16px;
+    line-height:1.5;
+}
+
+/* SETTINGS */
+.setting{
+    background:white;
+    border-radius:17px;
+    padding:17px;
+    margin-bottom:9px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 5px 18px rgba(30,55,90,.05);
+}
+
+.setting-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.setting-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.setting-title{
+    font-weight:700;
+}
+
+.setting-desc{
+    font-size:12px;
+    color:#9aa4b4;
+    margin-top:3px;
+}
+
+/* SWITCH */
+.switch{
+    width:48px;
+    height:28px;
+    background:#d9dfe8;
+    border-radius:20px;
+    padding:3px;
+}
+
+.switch.on{
+    background:#1670ff;
+}
+
+.switch-circle{
+    width:22px;
+    height:22px;
+    background:white;
+    border-radius:50%;
+    transition:.2s;
+}
+
+.switch.on .switch-circle{
+    transform:translateX(20px);
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:76px;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #edf0f5;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:20;
+}
+
+.nav-btn{
+    background:none;
+    color:#99a3b3;
+    font-size:10px;
+    min-width:65px;
+}
+
+.nav-icon{
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.nav-btn.active{
+    color:#1670ff;
+    font-weight:700;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    bottom:88px;
+    left:50%;
+    transform:translate(-50%,20px);
+    background:#172033;
+    color:white;
+    padding:12px 18px;
+    border-radius:13px;
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:50;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* DARK */
+body.dark{
+    background:#0d1421;
+    color:#eef3fb;
+}
+
+body.dark .app,
+body.dark .page{
+    background:#0d1421;
+}
+
+body.dark .card,
+body.dark .icon-btn,
+body.dark .quick,
+body.dark .list-item,
+body.dark .dictionary-card,
+body.dark .setting,
+body.dark .search{
+    background:#151e2d;
+    color:#eef3fb;
+}
+
+body.dark textarea,
+body.dark .result-text{
+    color:#eef3fb;
+}
+
+body.dark .bottom-nav{
+    background:rgba(15,22,34,.96);
+    border-color:#263143;
+}
+
+body.dark .language-switch{
+    background:#1d2839;
+}
+
+body.dark .language-switch button{
+    color:#9ca9bc;
+}
+
+body.dark .small-action,
+body.dark .result-actions button,
+body.dark .meaning{
+    background:#202c3e;
+    color:#bac5d6;
+}
+
+body.dark .setting-desc,
+body.dark .word-sub,
+body.dark .part{
+    color:#8997ab;
+}
+
+/* WELCOME */
+.welcome{
+    min-height:100vh;
+    background:linear-gradient(145deg,#063f9e,#1670ff 55%,#65a7ff);
+    color:white;
+    padding:55px 25px 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.welcome-logo{
+    width:105px;
+    height:105px;
+    background:white;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:52px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:32px;
+    margin:0;
+}
+
+.welcome p{
+    opacity:.9;
+    line-height:1.5;
+    max-width:300px;
+}
+
+.start{
+    width:100%;
+    max-width:330px;
+    background:white;
+    color:#1266e8;
+    padding:17px;
+    border-radius:17px;
+    font-weight:800;
+    margin-top:25px;
+    font-size:16px;
+}
+
+/* DESKTOP */
+@media(min-width:700px){
+    body{
+        background:#dfe7f2;
+    }
+
+    .app{
+        box-shadow:0 0 50px rgba(0,0,0,.12);
+        min-height:100vh;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- WELCOME -->
+<div id="welcome" class="welcome">
+    <div class="welcome-logo">🇬🇧🇺🇿</div>
+    <h1>English ↔ Uzbek</h1>
+    <p>Ingliz va o‘zbek tillari o‘rtasida tez va oson tarjima qiling.</p>
+    <button class="start" onclick="startApp()">Boshlash →</button>
+</div>
+
+
+<!-- MAIN -->
+<div id="mainApp" style="display:none;">
+
+<header class="header">
+    <div>
+        <div class="logo-title">English <span>↔</span> Uzbek</div>
+        <div class="subtitle">Tarjimon</div>
+    </div>
+
+    <button class="icon-btn" onclick="showPage('settings')">⚙️</button>
+</header>
+
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+<div class="language-switch">
+    <button id="engBtn" class="active" onclick="setDirection('en-uz')">
+        English → Uzbek
+    </button>
+    <button id="uzBtn" onclick="setDirection('uz-en')">
+        Uzbek → English
+    </button>
+</div>
+
+
+<div class="card">
+    <div class="card-head">
+        <div class="lang-name">
+            <span class="flag" id="inputFlag">🇬🇧</span>
+            <span id="inputLang">English</span>
+        </div>
+
+        <button class="clear" onclick="clearInput()">×</button>
+    </div>
+
+    <textarea id="inputText"
+        placeholder="Matnni kiriting..."
+        maxlength="500"></textarea>
+
+    <div class="card-bottom">
+        <div class="small-actions">
+            <button class="small-action" onclick="speakInput()">🔊</button>
+            <button class="small-action" onclick="pasteText()">📋</button>
+        </div>
+
+        <span id="counter">0/500</span>
+    </div>
+</div>
+
+
+<div class="swap-wrap">
+    <button class="swap" onclick="swapLanguages()">↔</button>
+</div>
+
+
+<div class="card result">
+    <div class="card-head">
+        <div class="lang-name">
+            <span class="flag" id="outputFlag">🇺🇿</span>
+            <span id="outputLang">Uzbek</span>
+        </div>
+    </div>
+
+    <div id="resultText" class="result-text">
+        <div class="empty-result">Tarjima natijasi shu yerda chiqadi</div>
+    </div>
+
+    <div class="result-actions">
+        <button onclick="copyResult()">📋 Nusxa olish</button>
+        <button onclick="saveResult()">🔖 Saqlash</button>
+        <button onclick="speakResult()">🔊 Talaffuz</button>
+    </div>
+</div>
+
+
+<button class="translate-btn" onclick="translateText()">
+    ✨ Tarjima qilish
+</button>
+
+
+<div class="section-title">Tezkor so‘zlar</div>
+
+<div class="quick-grid">
+    <div class="quick" onclick="quickTranslate('hello')">
+        <b>Hello</b>
+        <span>Salom</span>
+    </div>
+
+    <div class="quick" onclick="quickTranslate('thank you')">
+        <b>Thank you</b>
+        <span>Rahmat</span>
+    </div>
+
+    <div class="quick" onclick="quickTranslate('good morning')">
+        <b>Good morning</b>
+        <span>Xayrli tong</span>
+    </div>
+
+    <div class="quick" onclick="quickTranslate('friend')">
+        <b>Friend</b>
+        <span>Do‘st</span>
+    </div>
+</div>
+
+</section>
+
+
+<!-- SAVED -->
+<section id="saved" class="page">
+
+<div class="section-title" style="font-size:22px;margin-top:10px;">
+    Saqlangan so‘zlar
+</div>
+
+<div id="savedList"></div>
+
+</section>
+
+
+<!-- HISTORY -->
+<section id="history" class="page">
+
+<div class="section-title" style="font-size:22px;margin-top:10px;">
+    Tarix
+</div>
+
+<div id="historyList"></div>
+
+</section>
+
+
+<!-- DICTIONARY -->
+<section id="dictionary" class="page">
+
+<div class="section-title" style="font-size:22px;margin-top:10px;">
+    Lug‘at
+</div>
+
+<input
+    id="searchWord"
+    class="search"
+    placeholder="🔍 So‘z qidiring..."
+    oninput="dictionarySearch()"
+>
+
+<div id="dictionaryResult"></div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+
+<div class="section-title" style="font-size:22px;margin-top:10px;">
+    Sozlamalar
+</div>
+
+<div class="setting">
+    <div class="setting-left">
+        <div class="setting-icon">🔊</div>
+        <div>
+            <div class="setting-title">Talaffuz</div>
+            <div class="setting-desc">Tarjima matnini ovozli eshiting</div>
+        </div>
+    </div>
+
+    <div class="switch on" onclick="toggleSwitch(this)">
+        <div class="switch-circle"></div>
+    </div>
+</div>
+
+
+<div class="setting">
+    <div class="setting-left">
+        <div class="setting-icon">🌐</div>
+        <div>
+            <div class="setting-title">Tilni avtomatik aniqlash</div>
+            <div class="setting-desc">Kiritilgan tilni aniqlash</div>
+        </div>
+    </div>
+
+    <div class="switch on" onclick="toggleSwitch(this)">
+        <div class="switch-circle"></div>
+    </div>
+</div>
+
+
+<div class="setting">
+    <div class="setting-left">
+        <div class="setting-icon">🌙</div>
+        <div>
+            <div class="setting-title">Tungi rejim</div>
+            <div class="setting-desc">Ko‘zlar uchun qulayroq</div>
+        </div>
+    </div>
+
+    <div id="darkSwitch" class="switch" onclick="toggleDark()">
+        <div class="switch-circle"></div>
+    </div>
+</div>
+
+
+<div class="setting" onclick="clearAllData()">
+    <div class="setting-left">
+        <div class="setting-icon">🗑️</div>
+        <div>
+            <div class="setting-title">Ma’lumotlarni tozalash</div>
+            <div class="setting-desc">Saqlangan so‘zlar va tarixni o‘chirish</div>
+        </div>
+    </div>
+    <span>›</span>
+</div>
+
+
+<div class="setting">
+    <div class="setting-left">
+        <div class="setting-icon">ℹ️</div>
+        <div>
+            <div class="setting-title">Ilova haqida</div>
+            <div class="setting-desc">English ↔ Uzbek Translator</div>
+        </div>
+    </div>
+    <span>›</span>
+</div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+<nav class="bottom-nav">
+
+<button class="nav-btn active" onclick="showPage('home',this)">
+    <div class="nav-icon">⌂</div>
+    Asosiy
+</button>
+
+<button class="nav-btn" onclick="showPage('saved',this)">
+    <div class="nav-icon">🔖</div>
+    Saqlangan
+</button>
+
+<button class="nav-btn" onclick="showPage('history',this)">
+    <div class="nav-icon">◷</div>
+    Tarix
+</button>
+
+<button class="nav-btn" onclick="showPage('dictionary',this)">
+    <div class="nav-icon">📖</div>
+    Lug‘at
+</button>
+
+<button class="nav-btn" onclick="showPage('settings',this)">
+    <div class="nav-icon">⚙</div>
+    Sozlamalar
+</button>
+
+</nav>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DICTIONARY
+========================= */
+
+const dictionary = {
+
+"hello":"salom",
+"hi":"salom",
+"goodbye":"xayr",
+"bye":"xayr",
+"thank you":"rahmat",
+"thanks":"rahmat",
+"please":"iltimos",
+"yes":"ha",
+"no":"yo‘q",
+"good morning":"xayrli tong",
+"good afternoon":"xayrli kun",
+"good evening":"xayrli kech",
+"good night":"xayrli tun",
+"how are you":"qalaysiz",
+"i am fine":"men yaxshiman",
+"my name is":"mening ismim",
+"book":"kitob",
+"school":"maktab",
+"teacher":"o‘qituvchi",
+"student":"o‘quvchi",
+"friend":"do‘st",
+"family":"oila",
+"father":"ota",
+"mother":"ona",
+"brother":"aka / uka",
+"sister":"opa / singil",
+"house":"uy",
+"room":"xona",
+"door":"eshik",
+"window":"deraza",
+"water":"suv",
+"food":"ovqat",
+"bread":"non",
+"meat":"go‘sht",
+"apple":"olma",
+"car":"mashina",
+"phone":"telefon",
+"computer":"kompyuter",
+"table":"stol",
+"chair":"stul",
+"pen":"ruchka",
+"pencil":"qalam",
+"bag":"sumka",
+"schoolbag":"maktab sumkasi",
+"clothes":"kiyim",
+"shirt":"ko‘ylak",
+"trousers":"shim",
+"skirt":"yubka",
+"shoes":"oyoq kiyim",
+"happy":"baxtli",
+"sad":"xafa",
+"big":"katta",
+"small":"kichik",
+"good":"yaxshi",
+"bad":"yomon",
+"beautiful":"chiroyli",
+"fast":"tez",
+"slow":"sekin",
+"hot":"issiq",
+"cold":"sovuq",
+"new":"yangi",
+"old":"eski",
+"young":"yosh",
+"work":"ish",
+"home":"uy",
+"school":"maktab",
+"today":"bugun",
+"tomorrow":"ertaga",
+"yesterday":"kecha",
+"morning":"ertalab",
+"night":"tun",
+"day":"kun",
+"where":"qayerda",
+"what":"nima",
+"who":"kim",
+"when":"qachon",
+"why":"nima uchun",
+"how":"qanday",
+"water please":"iltimos, suv",
+"i love you":"men seni sevaman",
+"i like it":"menga bu yoqadi",
+"i don't know":"men bilmayman",
+"come here":"bu yerga kel",
+"sit down":"o‘tir",
+"stand up":"tur",
+"open the door":"eshikni och",
+"close the door":"eshikni yop",
+"i am going to school":"men maktabga ketyapman",
+"i play football":"men futbol o‘ynayman",
+"this is my book":"bu mening kitobim",
+"where is the school":"maktab qayerda",
+"what is your name":"ismingiz nima",
+"nice to meet you":"tanishganimdan xursandman"
+};
+
+
+/* Uzbek -> English */
+const reverseDictionary = {};
+
+for(const key in dictionary){
+    const value = dictionary[key].toLowerCase();
+
+    if(!reverseDictionary[value]){
+        reverseDictionary[value] = key;
+    }
+}
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let direction = "en-uz";
+let lastResult = "";
+let saved = JSON.parse(localStorage.getItem("savedWords") || "[]");
+let historyData = JSON.parse(localStorage.getItem("translationHistory") || "[]");
+
+
+/* =========================
+   START
+========================= */
+
+function startApp(){
+
+    document.getElementById("welcome").style.display="none";
+    document.getElementById("mainApp").style.display="block";
+
+}
+
+
+/* =========================
+   DIRECTION
+========================= */
+
+function setDirection(dir){
+
+    direction = dir;
+
+    document.getElementById("engBtn").classList.toggle("active",dir==="en-uz");
+    document.getElementById("uzBtn").classList.toggle("active",dir==="uz-en");
+
+    if(dir==="en-uz"){
+
+        document.getElementById("inputFlag").textContent="🇬🇧";
+        document.getElementById("outputFlag").textContent="🇺🇿";
+
+        document.getElementById("inputLang").textContent="English";
+        document.getElementById("outputLang").textContent="Uzbek";
+
+        document.getElementById("inputText").placeholder="Matnni kiriting...";
+
+    }else{
+
+        document.getElementById("inputFlag").textContent="🇺🇿";
+        document.getElementById("outputFlag").textContent="🇬🇧";
+
+        document.getElementById("inputLang").textContent="Uzbek";
+        document.getElementById("outputLang").textContent="English";
+
+        document.getElementById("inputText").placeholder="Matnni kiriting...";
+
+    }
+
+}
+
+
+/* =========================
+   SWAP
+========================= */
+
+function swapLanguages(){
+
+    const input = document.getElementById("inputText").value;
+    const result = lastResult;
+
+    if(direction==="en-uz"){
+        setDirection("uz-en");
+    }else{
+        setDirection("en-uz");
+    }
+
+    document.getElementById("inputText").value=result || input;
+
+    updateCounter();
+
+}
+
+
+/* =========================
+   TRANSLATION
+========================= */
+
+function translateText(){
+
+    const input = document.getElementById("inputText").value.trim();
+
+    if(!input){
+
+        showToast("Avval matn kiriting");
+        return;
+
+    }
+
+    let result = "";
+
+    if(direction==="en-uz"){
+        result = translateEnglishToUzbek(input);
+    }else{
+        result = translateUzbekToEnglish(input);
+    }
+
+    lastResult=result;
+
+    document.getElementById("resultText").innerHTML =
+        escapeHTML(result);
+
+    addHistory(input,result);
+
+}
+
+
+/* English → Uzbek */
+function translateEnglishToUzbek(text){
+
+    const lower=text.toLowerCase().trim();
+
+    if(dictionary[lower]){
+        return dictionary[lower];
+    }
+
+    let result=text;
+
+    const words=lower.split(/\s+/);
+
+    let translated=[];
+
+    for(const word of words){
+
+        const clean=word.replace(/[.,!?]/g,"");
+
+        if(dictionary[clean]){
+            translated.push(dictionary[clean]);
+        }else{
+            translated.push(word);
+        }
+
+    }
+
+    result=translated.join(" ");
+
+    return result;
+}
+
+
+/* Uzbek → English */
+function translateUzbekToEnglish(text){
+
+    const lower=text.toLowerCase().trim();
+
+    if(reverseDictionary[lower]){
+        return reverseDictionary[lower];
+    }
+
+    let words=lower.split(/\s+/);
+    let translated=[];
+
+    for(const word of words){
+
+        const clean=word.replace(/[.,!?]/g,"");
+
+        if(reverseDictionary[clean]){
+            translated.push(reverseDictionary[clean]);
+        }else{
+            translated.push(word);
+        }
+
+    }
+
+    return translated.join(" ");
+}
+
+
+/* =========================
+   QUICK
+========================= */
+
+function quickTranslate(word){
+
+    document.getElementById("inputText").value=word;
+
+    updateCounter();
+
+    translateText();
+
+}
+
+
+/* =========================
+   COPY
+========================= */
+
+function copyResult(){
+
+    if(!lastResult){
+        showToast("Nusxa olish uchun tarjima qiling");
+        return;
+    }
+
+    navigator.clipboard.writeText(lastResult);
+
+    showToast("Nusxa olindi ✓");
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveResult(){
+
+    const input=document.getElementById("inputText").value.trim();
+
+    if(!input || !lastResult){
+        showToast("Avval tarjima qiling");
+        return;
+    }
+
+    saved.unshift({
+        input:input,
+        result:lastResult,
+        direction:direction
+    });
+
+    saved=saved.slice(0,100);
+
+    localStorage.setItem("savedWords",JSON.stringify(saved));
+
+    renderSaved();
+
+    showToast("Saqlangan ✓");
+
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function addHistory(input,result){
+
+    historyData.unshift({
+        input:input,
+        result:result,
+        time:new Date().toLocaleTimeString("uz-UZ",{
+            hour:"2-digit",
+            minute:"2-digit"
+        })
+    });
+
+    historyData=historyData.slice(0,100);
+
+    localStorage.setItem(
+        "translationHistory",
+        JSON.stringify(historyData)
+    );
+
+}
+
+
+/* =========================
+   SAVED PAGE
+========================= */
+
+function renderSaved(){
+
+    const container=document.getElementById("savedList");
+
+    if(saved.length===0){
+
+        container.innerHTML=`
+        <div class="empty-list">
+            <div>🔖</div>
+            Hali saqlangan so‘zlar yo‘q.
+        </div>`;
+
+        return;
+    }
+
+    container.innerHTML=saved.map((item,index)=>`
+
+        <div class="list-item">
+
+            <div class="word-info">
+
+                <div class="word-icon">
+                    ${item.direction==="en-uz" ? "🇬🇧" : "🇺🇿"}
+                </div>
+
+                <div>
+                    <div class="word-main">
+                        ${escapeHTML(item.input)}
+                    </div>
+
+                    <div class="word-sub">
+                        ${escapeHTML(item.result)}
+                    </div>
+                </div>
+
+            </div>
+
+            <button
+                class="delete-btn"
+                onclick="deleteSaved(${index})">
+                🗑
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function deleteSaved(index){
+
+    saved.splice(index,1);
+
+    localStorage.setItem(
+        "savedWords",
+        JSON.stringify(saved)
+    );
+
+    renderSaved();
+
+}
+
+
+/* =========================
+   HISTORY PAGE
+========================= */
+
+function renderHistory(){
+
+    const container=document.getElementById("historyList");
+
+    if(historyData.length===0){
+
+        container.innerHTML=`
+        <div class="empty-list">
+            <div>◷</div>
+            Tarjima tarixi hali bo‘sh.
+        </div>`;
+
+        return;
+    }
+
+    container.innerHTML=historyData.map(item=>`
+
+        <div class="list-item">
+
+            <div class="word-info">
+
+                <div class="word-icon">
+                    🔄
+                </div>
+
+                <div>
+                    <div class="word-main">
+                        ${escapeHTML(item.input)}
+                    </div>
+
+                    <div class="word-sub">
+                        ${escapeHTML(item.result)}
+                    </div>
+                </div>
+
+            </div>
+
+            <small style="color:#9aa4b4;">
+                ${item.time}
+            </small>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   DICTIONARY
+========================= */
+
+function dictionarySearch(){
+
+    const q=document
+        .getElementById("searchWord")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const result=document.getElementById("dictionaryResult");
+
+    if(!q){
+
+        result.innerHTML="";
+
+        return;
+    }
+
+    let found=null;
+
+    for(const key in dictionary){
+
+        if(key===q || key.includes(q)){
+
+            found={
+                word:key,
+                translation:dictionary[key]
+            };
+
+            break;
+        }
+
+    }
+
+    if(!found){
+
+        result.innerHTML=`
+        <div class="empty-list">
+            <div>🔍</div>
+            Bu so‘z lug‘atda topilmadi.
+        </div>`;
+
+        return;
+    }
+
+    result.innerHTML=`
+
+    <div class="dictionary-card">
+
+        <div class="dictionary-word">
+            ${escapeHTML(found.word)}
+        </div>
+
+        <div class="part">
+            English → Uzbek
+        </div>
+
+        <div class="meaning">
+            <b>${escapeHTML(found.translation)}</b>
+        </div>
+
+        <div class="example">
+            <b>Misol:</b><br>
+            I know this word.<br>
+            <span style="color:#8d98a9;">
+            — Men bu so‘zni bilaman.
+            </span>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:16px;">
+
+            <button
+                class="result-actions"
+                style="border:0;flex:1;background:#eef3fa;border-radius:13px;padding:12px;"
+                onclick="speakWord('${escapeAttribute(found.word)}')">
+                🔊 Talaffuz
+            </button>
+
+            <button
+                style="flex:1;background:#1670ff;color:white;border-radius:13px;"
+                onclick="saveDictionaryWord('${escapeAttribute(found.word)}','${escapeAttribute(found.translation)}')">
+                🔖 Saqlash
+            </button>
+
+        </div>
+
+    </div>`;
+
+}
+
+
+function saveDictionaryWord(word,translation){
+
+    saved.unshift({
+        input:word,
+        result:translation,
+        direction:"en-uz"
+    });
+
+    localStorage.setItem(
+        "savedWords",
+        JSON.stringify(saved)
+    );
+
+    renderSaved();
+
+    showToast("So‘z saqlandi ✓");
+
+}
+
+
+/* =========================
+   SPEECH
+========================= */
+
+function speakInput(){
+
+    const text=document.getElementById("inputText").value;
+
+    if(!text){
+        showToast("Matn yo‘q");
+        return;
+    }
+
+    speak(
+        text,
+        direction==="en-uz" ? "en-US" : "uz-UZ"
+    );
+
+}
+
+
+function speakResult(){
+
+    if(!lastResult){
+        showToast("Tarjima yo‘q");
+        return;
+    }
+
+    speak(
+        lastResult,
+        direction==="en-uz" ? "uz-UZ" : "en-US"
+    );
+
+}
+
+
+function speakWord(word){
+
+    speak(word,"en-US");
+
+}
+
+
+function speak(text,lang){
+
+    if(!("speechSynthesis" in window)){
+
+        showToast("Bu qurilmada ovozli funksiya mavjud emas");
+
+        return;
+    }
+
+    const utterance=new SpeechSynthesisUtterance(text);
+
+    utterance.lang=lang;
+    utterance.rate=.85;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+
+}
+
+
+/* =========================
+   PASTE
+========================= */
+
+async function pasteText(){
+
+    try{
+
+        const text=await navigator.clipboard.readText();
+
+        document.getElementById("inputText").value=text;
+
+        updateCounter();
+
+    }catch(e){
+
+        showToast("Clipboardga ruxsat berilmadi");
+
+    }
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearInput(){
+
+    document.getElementById("inputText").value="";
+
+    document.getElementById("resultText").innerHTML=
+        `<div class="empty-result">Tarjima natijasi shu yerda chiqadi</div>`;
+
+    lastResult="";
+
+    updateCounter();
+
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+document.getElementById("inputText")
+.addEventListener("input",updateCounter);
+
+
+function updateCounter(){
+
+    const value=document.getElementById("inputText").value.length;
+
+    document.getElementById("counter").textContent=
+        value+"/500";
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(page,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p=>p.classList.remove("active"));
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b=>b.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }else{
+
+        document
+            .querySelectorAll(".nav-btn")
+            .forEach(b=>{
+
+                if(b.textContent.toLowerCase().includes(page)){
+                    b.classList.add("active");
+                }
+
+            });
+
+    }
+
+    if(page==="saved"){
+        renderSaved();
+    }
+
+    if(page==="history"){
+        renderHistory();
+    }
+
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+function toggleSwitch(el){
+
+    el.classList.toggle("on");
+
+}
+
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+    const sw=document.getElementById("darkSwitch");
+
+    sw.classList.toggle("on");
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+
+function loadDark(){
+
+    const dark=localStorage.getItem("darkMode")==="true";
+
+    if(dark){
+
+        document.body.classList.add("dark");
+
+        document
+            .getElementById("darkSwitch")
+            .classList.add("on");
+
+    }
+
+}
+
+
+function clearAllData(){
+
+    if(confirm("Saqlangan so‘zlar va tarixni o‘chirishni xohlaysizmi?")){
+
+        saved=[];
+        historyData=[];
+
+        localStorage.removeItem("savedWords");
+        localStorage.removeItem("translationHistory");
+
+        renderSaved();
+        renderHistory();
+
+        showToast("Ma’lumotlar tozalandi");
+
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast=document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },1800);
+
+}
+
+
+/* =========================
+   SECURITY / HTML
+========================= */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(text){
+
+    return String(text)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;");
+
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+loadDark();
+renderSaved();
+renderHistory();
+
+</script>
+
+</body>
+</html>
