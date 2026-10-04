@@ -1092,32 +1092,63 @@ function swapLanguages(){
    TRANSLATION
 ========================= */
 
-function translateText(){
+async function translateText(){
 
     const input = document.getElementById("inputText").value.trim();
 
     if(!input){
-
         showToast("Avval matn kiriting");
         return;
-
     }
 
-    let result = "";
+    const resultBox = document.getElementById("resultText");
 
-    if(direction==="en-uz"){
-        result = translateEnglishToUzbek(input);
-    }else{
-        result = translateUzbekToEnglish(input);
+    resultBox.innerHTML = "Tarjima qilinmoqda...";
+
+    try {
+
+        const source = direction === "en-uz" ? "en" : "uz";
+        const target = direction === "en-uz" ? "uz" : "en";
+
+        const response = await fetch(
+            "https://tarjimapro-api.onrender.com/translate",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    text: input,
+                    source: source,
+                    target: target
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(!response.ok || !data.translatedText){
+            throw new Error("Tarjima amalga oshmadi");
+        }
+
+        const result = data.translatedText;
+
+        lastResult = result;
+
+        resultBox.innerHTML = escapeHTML(result);
+
+        addHistory(input, result);
+
+    } catch(error) {
+
+        console.error(error);
+
+        resultBox.innerHTML =
+            "Tarjima qilishda xatolik yuz berdi.";
+
+        showToast("Tarjima serveriga ulanib bo‘lmadi");
+
     }
-
-    lastResult=result;
-
-    document.getElementById("resultText").innerHTML =
-        escapeHTML(result);
-
-    addHistory(input,result);
-
 }
 
 
