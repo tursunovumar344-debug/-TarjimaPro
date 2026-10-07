@@ -3,721 +3,630 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#1769ff">
-<title>English ↔ Uzbek Translator</title>
+<meta name="theme-color" content="#111827">
+<title>Accessory Pro</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-    margin:0;
-    padding:0;
-    min-height:100%;
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --primary:#111827;
+  --blue:#2563eb;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#f59e0b;
+  --shadow:0 8px 25px rgba(0,0,0,.06);
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:#e8eef7;
-    color:#172033;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
-button,input,textarea{
-    font:inherit;
+button,
+input,
+select{
+  font:inherit;
 }
 
 button{
-    border:0;
-    cursor:pointer;
+  border:0;
+  cursor:pointer;
 }
 
 .app{
-    width:100%;
-    max-width:480px;
-    min-height:100vh;
-    margin:auto;
-    background:#f7f9fd;
-    position:relative;
-    overflow:hidden;
+  max-width:480px;
+  min-height:100vh;
+  margin:auto;
+  background:var(--bg);
+  padding-bottom:90px;
 }
 
-/* =========================
-   WELCOME
-========================= */
-
-.welcome{
-    min-height:100vh;
-    background:linear-gradient(145deg,#063f9e,#1670ff 55%,#65a7ff);
-    color:white;
-    padding:40px 25px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.welcome-logo{
-    width:108px;
-    height:108px;
-    background:white;
-    border-radius:30px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:48px;
-    box-shadow:0 20px 40px rgba(0,0,0,.2);
-    margin-bottom:25px;
-}
-
-.welcome h1{
-    font-size:31px;
-    margin:0;
-}
-
-.welcome p{
-    opacity:.92;
-    line-height:1.55;
-    max-width:310px;
-}
-
-.start{
-    width:100%;
-    max-width:330px;
-    background:white;
-    color:#1266e8;
-    padding:17px;
-    border-radius:17px;
-    font-weight:800;
-    margin-top:25px;
-    font-size:16px;
-}
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
-    padding:22px 20px 14px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  background:var(--primary);
+  color:#fff;
+  padding:22px 18px 20px;
+  border-radius:0 0 24px 24px;
 }
 
-.logo-title{
-    font-size:23px;
-    font-weight:800;
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.logo-title span{
-    color:#1670ff;
+.logo{
+  font-size:22px;
+  font-weight:800;
 }
 
-.subtitle{
-    font-size:12px;
-    color:#8b95a7;
-    margin-top:3px;
+.shop-name{
+  font-size:12px;
+  opacity:.65;
+  margin-top:3px;
 }
 
-.icon-btn{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    background:white;
-    box-shadow:0 5px 18px rgba(30,60,100,.08);
-    font-size:20px;
+.header-date{
+  font-size:12px;
+  opacity:.7;
 }
 
-/* =========================
-   PAGES
-========================= */
+/* PAGES */
 
 .page{
-    display:none;
-    padding:0 18px 100px;
+  display:none;
+  padding:16px;
 }
 
 .page.active{
-    display:block;
+  display:block;
 }
 
-/* =========================
-   LANGUAGE
-========================= */
-
-.language-switch{
-    background:#e8edf6;
-    padding:4px;
-    border-radius:14px;
-    display:flex;
-    margin:8px 0 15px;
+.page-title{
+  font-size:22px;
+  font-weight:800;
+  margin:4px 0 4px;
 }
 
-.language-switch button{
-    flex:1;
-    padding:11px 5px;
-    border-radius:11px;
-    background:transparent;
-    color:#778196;
-    font-size:13px;
-    font-weight:700;
+.page-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:16px;
 }
 
-.language-switch button.active{
-    background:#1670ff;
-    color:white;
-    box-shadow:0 4px 10px rgba(22,112,255,.25);
+/* DASHBOARD */
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:22px;
-    padding:17px;
-    box-shadow:0 8px 28px rgba(30,55,90,.07);
-    margin-bottom:13px;
+.stat{
+  background:var(--card);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:var(--shadow);
 }
 
-.card-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
 }
 
-.lang-name{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-weight:750;
+.stat-value{
+  font-size:21px;
+  font-weight:800;
+  margin-top:7px;
 }
 
-.flag{
-    font-size:23px;
-}
-
-.clear{
-    background:none;
-    color:#a2aaba;
-    font-size:21px;
-}
-
-textarea{
-    width:100%;
-    min-height:150px;
-    resize:none;
-    border:0;
-    outline:none;
-    font-size:18px;
-    line-height:1.5;
-    color:#20283a;
-    background:transparent;
-}
-
-textarea::placeholder{
-    color:#b7bfcc;
-}
-
-.card-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:#8d98a9;
-    font-size:12px;
-}
-
-.small-actions{
-    display:flex;
-    gap:7px;
-}
-
-.small-action{
-    width:38px;
-    height:38px;
-    border-radius:12px;
-    background:#eef3fa;
-    color:#45617f;
-    font-size:17px;
-}
-
-/* =========================
-   SWAP
-========================= */
-
-.swap-wrap{
-    display:flex;
-    justify-content:center;
-    height:0;
-    position:relative;
-    z-index:3;
-}
-
-.swap{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:#1670ff;
-    color:white;
-    font-size:21px;
-    box-shadow:0 8px 18px rgba(22,112,255,.35);
-    transform:translateY(-50%);
-}
-
-.swap:active{
-    transform:translateY(-50%) scale(.94);
-}
-
-/* =========================
-   RESULT
-========================= */
-
-.result{
-    min-height:180px;
-}
-
-.result-text{
-    font-size:19px;
-    line-height:1.55;
-    min-height:90px;
-    color:#172033;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.empty-result{
-    color:#b2bac8;
-    text-align:center;
-    padding-top:28px;
-    font-size:14px;
-}
-
-.loading{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:9px;
-    color:#7d8aa0;
-    padding-top:25px;
-}
-
-.loader{
-    width:18px;
-    height:18px;
-    border:3px solid #dce5f2;
-    border-top-color:#1670ff;
-    border-radius:50%;
-    animation:spin .7s linear infinite;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg)}
-}
-
-.result-actions{
-    display:flex;
-    border-top:1px solid #edf0f5;
-    padding-top:12px;
-    gap:8px;
-    margin-top:12px;
-}
-
-.result-actions button{
-    flex:1;
-    background:#f1f5fb;
-    color:#52637c;
-    padding:10px 5px;
-    border-radius:12px;
-    font-size:12px;
-}
-
-/* =========================
-   TRANSLATE BUTTON
-========================= */
-
-.translate-btn{
-    width:100%;
-    background:#1670ff;
-    color:white;
-    padding:16px;
-    border-radius:17px;
-    font-weight:750;
-    font-size:16px;
-    box-shadow:0 8px 18px rgba(22,112,255,.25);
-    margin:3px 0 15px;
-}
-
-.translate-btn:active{
-    transform:scale(.98);
-}
-
-.translate-btn.loading-btn{
-    opacity:.75;
-}
-
-/* =========================
-   QUICK WORDS
-========================= */
-
-.section-title{
-    font-size:15px;
-    font-weight:800;
-    margin:20px 3px 10px;
-}
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+.stat-icon{
+  font-size:23px;
+  margin-bottom:8px;
 }
 
 .quick{
-    background:white;
-    border-radius:15px;
-    padding:14px;
-    box-shadow:0 5px 18px rgba(30,55,90,.05);
+  margin-top:18px;
 }
 
-.quick:active{
-    transform:scale(.98);
+.quick-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.quick b{
-    display:block;
-    margin-bottom:4px;
+.quick-btn{
+  background:#fff;
+  border-radius:16px;
+  padding:16px 12px;
+  text-align:left;
+  box-shadow:var(--shadow);
+  font-weight:700;
 }
 
-.quick span{
-    color:#8b96a8;
-    font-size:13px;
+.quick-btn span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+  font-weight:500;
 }
 
-/* =========================
-   LIST
-========================= */
-
-.list-item{
-    background:white;
-    border-radius:17px;
-    padding:15px;
-    margin-bottom:9px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    box-shadow:0 5px 18px rgba(30,55,90,.05);
+.section-title{
+  font-size:17px;
+  font-weight:800;
+  margin:22px 0 12px;
 }
 
-.word-info{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0;
+/* CARDS */
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:15px;
+  box-shadow:var(--shadow);
+  margin-bottom:11px;
 }
 
-.word-icon{
-    width:42px;
-    height:42px;
-    min-width:42px;
-    border-radius:13px;
-    background:#edf4ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.product{
+  display:flex;
+  gap:12px;
+  align-items:center;
 }
 
-.word-main{
-    font-weight:750;
-    word-break:break-word;
+.product-img{
+  width:68px;
+  height:68px;
+  border-radius:14px;
+  object-fit:cover;
+  background:#f3f4f6;
+  flex-shrink:0;
 }
 
-.word-sub{
-    color:#8d98a9;
-    font-size:13px;
-    margin-top:3px;
-    word-break:break-word;
+.product-info{
+  flex:1;
+  min-width:0;
 }
 
-.delete-btn{
-    background:#fff0f0;
-    color:#e54848;
-    width:36px;
-    height:36px;
-    min-width:36px;
-    border-radius:11px;
+.product-name{
+  font-weight:800;
+  font-size:15px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.empty-list{
-    text-align:center;
-    padding:60px 20px;
-    color:#9ca6b7;
+.product-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
 }
 
-.empty-list div{
-    font-size:45px;
-    margin-bottom:12px;
+.product-price{
+  font-weight:800;
+  margin-top:6px;
 }
 
-/* =========================
-   DICTIONARY
-========================= */
+.stock{
+  font-size:12px;
+  margin-top:4px;
+  font-weight:700;
+}
+
+.stock.good{
+  color:var(--green);
+}
+
+.stock.low{
+  color:var(--orange);
+}
+
+.stock.empty{
+  color:var(--red);
+}
+
+/* BUTTONS */
+
+.btn{
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn-blue{
+  background:var(--blue);
+  color:#fff;
+}
+
+.btn-green{
+  background:var(--green);
+  color:#fff;
+}
+
+.btn-red{
+  background:#fee2e2;
+  color:var(--red);
+}
+
+.btn-light{
+  background:#f3f4f6;
+  color:#111827;
+}
+
+.btn-small{
+  padding:8px 10px;
+  font-size:12px;
+}
+
+/* SEARCH */
 
 .search{
-    width:100%;
-    padding:15px 17px;
-    border:0;
-    outline:none;
-    background:white;
-    border-radius:16px;
-    box-shadow:0 5px 18px rgba(30,55,90,.06);
-    margin-bottom:12px;
+  position:relative;
+  margin-bottom:10px;
 }
 
-.dictionary-card{
-    background:white;
-    border-radius:20px;
-    padding:18px;
-    box-shadow:0 7px 20px rgba(30,55,90,.06);
+.search input{
+  width:100%;
+  border:0;
+  background:#fff;
+  border-radius:14px;
+  padding:14px 15px;
+  outline:none;
+  box-shadow:var(--shadow);
 }
 
-.dictionary-word{
-    font-size:24px;
-    font-weight:800;
+.filters{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding-bottom:5px;
 }
 
-.part{
-    color:#8d98a9;
-    font-size:13px;
-    margin:5px 0 13px;
+.filter{
+  white-space:nowrap;
+  padding:9px 13px;
+  background:#fff;
+  border-radius:20px;
+  color:#555;
+  font-size:12px;
 }
 
-.meaning{
-    background:#f1f5fb;
-    border-radius:14px;
-    padding:13px;
-    margin-top:9px;
+.filter.active{
+  background:#111827;
+  color:#fff;
 }
 
-.example{
-    margin-top:16px;
-    line-height:1.5;
-}
-
-/* =========================
-   SETTINGS
-========================= */
-
-.setting{
-    background:white;
-    border-radius:17px;
-    padding:17px;
-    margin-bottom:9px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    box-shadow:0 5px 18px rgba(30,55,90,.05);
-}
-
-.setting-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.setting-icon{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:#edf4ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.setting-title{
-    font-weight:700;
-}
-
-.setting-desc{
-    font-size:12px;
-    color:#9aa4b4;
-    margin-top:3px;
-}
-
-/* =========================
-   SWITCH
-========================= */
-
-.switch{
-    width:48px;
-    height:28px;
-    background:#d9dfe8;
-    border-radius:20px;
-    padding:3px;
-}
-
-.switch.on{
-    background:#1670ff;
-}
-
-.switch-circle{
-    width:22px;
-    height:22px;
-    background:white;
-    border-radius:50%;
-    transition:.2s;
-}
-
-.switch.on .switch-circle{
-    transform:translateX(20px);
-}
-
-/* =========================
-   NAV
-========================= */
+/* BOTTOM NAV */
 
 .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:480px;
-    height:76px;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(15px);
-    border-top:1px solid #edf0f5;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:20;
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  height:76px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(15px);
+  border-top:1px solid #e5e7eb;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  z-index:50;
 }
 
 .nav-btn{
-    background:none;
-    color:#99a3b3;
-    font-size:10px;
-    min-width:65px;
+  background:transparent;
+  color:#8a8f98;
+  font-size:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
 }
 
 .nav-icon{
-    font-size:21px;
-    margin-bottom:4px;
+  font-size:21px;
 }
 
 .nav-btn.active{
-    color:#1670ff;
-    font-weight:700;
+  color:#111827;
+  font-weight:800;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:480px;
+  background:#fff;
+  border-radius:25px 25px 0 0;
+  padding:20px;
+  max-height:92vh;
+  overflow:auto;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.modal-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#f3f4f6;
+}
+
+/* FORMS */
+
+.form-group{
+  margin-bottom:13px;
+}
+
+.form-label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.input,
+.select{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  outline:none;
+  background:#fff;
+}
+
+.input:focus,
+.select:focus{
+  border-color:#111827;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.form-actions{
+  display:flex;
+  gap:8px;
+  margin-top:17px;
+}
+
+.form-actions button{
+  flex:1;
+}
+
+/* IMAGE */
+
+.image-box{
+  border:2px dashed #d1d5db;
+  border-radius:16px;
+  padding:14px;
+  text-align:center;
+  margin-bottom:13px;
+}
+
+.image-preview{
+  width:110px;
+  height:110px;
+  object-fit:contain;
+  border-radius:14px;
+  display:none;
+  margin:0 auto 10px;
+  background:#fff;
+}
+
+.image-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.image-buttons button{
+  flex:1;
+}
+
+/* REPORT */
+
+.report-card{
+  background:#fff;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+
+.chart{
+  height:180px;
+  display:flex;
+  align-items:flex-end;
+  gap:7px;
+  margin-top:20px;
+  border-bottom:1px solid #ddd;
+}
+
+.bar-wrap{
+  flex:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.bar{
+  width:100%;
+  max-width:30px;
+  background:#111827;
+  border-radius:7px 7px 0 0;
+  min-height:3px;
+}
+
+.bar-label{
+  font-size:9px;
+  color:#777;
+  margin-top:5px;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:#8a8f98;
+}
+
+.empty-icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+/* HISTORY */
+
+.history-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.history-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#ecfdf5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--green);
+  font-size:20px;
+}
+
+.history-info{
+  flex:1;
+}
+
+.history-name{
+  font-weight:700;
+  font-size:14px;
+}
+
+.history-meta{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.history-price{
+  font-weight:800;
+  font-size:14px;
+}
+
+/* SETTINGS */
+
+.setting{
+  background:#fff;
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:10px;
+  box-shadow:var(--shadow);
+}
+
+.setting-title{
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.setting-desc{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+/* TOAST */
 
 .toast{
-    position:fixed;
-    bottom:88px;
-    left:50%;
-    transform:translate(-50%,20px);
-    background:#172033;
-    color:white;
-    padding:12px 18px;
-    border-radius:13px;
-    font-size:13px;
-    opacity:0;
-    pointer-events:none;
-    transition:.25s;
-    z-index:50;
-    white-space:nowrap;
-    max-width:90%;
+  position:fixed;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%) translateY(20px);
+  background:#111827;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:13px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:200;
+  max-width:90%;
+  text-align:center;
 }
 
 .toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
-/* =========================
-   DARK MODE
-========================= */
+/* CONFIRM */
 
-body.dark{
-    background:#0d1421;
-    color:#eef3fb;
+.confirm{
+  text-align:center;
 }
 
-body.dark .app,
-body.dark .page{
-    background:#0d1421;
+.confirm p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
 }
 
-body.dark .card,
-body.dark .icon-btn,
-body.dark .quick,
-body.dark .list-item,
-body.dark .dictionary-card,
-body.dark .setting,
-body.dark .search{
-    background:#151e2d;
-    color:#eef3fb;
-}
-
-body.dark textarea,
-body.dark .result-text{
-    color:#eef3fb;
-}
-
-body.dark .bottom-nav{
-    background:rgba(15,22,34,.96);
-    border-color:#263143;
-}
-
-body.dark .language-switch{
-    background:#1d2839;
-}
-
-body.dark .language-switch button{
-    color:#9ca9bc;
-}
-
-body.dark .small-action,
-body.dark .result-actions button,
-body.dark .meaning{
-    background:#202c3e;
-    color:#bac5d6;
-}
-
-body.dark .setting-desc,
-body.dark .word-sub,
-body.dark .part{
-    color:#8997ab;
-}
-
-body.dark .search{
-    color:white;
-}
-
-body.dark .search::placeholder{
-    color:#8290a5;
-}
-
-/* =========================
-   DESKTOP
-========================= */
-
-@media(min-width:700px){
-    body{
-        background:#dfe7f2;
-    }
-
-    .app{
-        box-shadow:0 0 50px rgba(0,0,0,.12);
-        min-height:100vh;
-    }
+@media(min-width:481px){
+  .bottom-nav{
+    border-radius:18px 18px 0 0;
+  }
 }
 </style>
 </head>
@@ -726,1980 +635,1706 @@ body.dark .search::placeholder{
 
 <div class="app">
 
-<!-- WELCOME -->
-<div id="welcome" class="welcome">
-
-    <div class="welcome-logo">🇬🇧🇺🇿</div>
-
-    <h1>English ↔ Uzbek</h1>
-
-    <p>
-        Ingliz va o‘zbek tillari o‘rtasida
-        tez va oson tarjima qiling.
-    </p>
-
-    <button class="start" onclick="startApp()">
-        Boshlash →
-    </button>
-
-</div>
-
-
-<!-- MAIN APP -->
-<div id="mainApp" style="display:none;">
-
 <header class="header">
-
+  <div class="header-top">
     <div>
-        <div class="logo-title">
-            English <span>↔</span> Uzbek
-        </div>
-
-        <div class="subtitle">
-            Professional Translator
-        </div>
+      <div class="logo">Accessory Pro</div>
+      <div class="shop-name" id="headerShop">Aksessuar do‘koni</div>
     </div>
-
-    <button class="icon-btn"
-            onclick="showPage('settings')">
-        ⚙️
-    </button>
-
+    <div class="header-date" id="headerDate"></div>
+  </div>
 </header>
 
+<!-- ASOSIY -->
 
-<!-- HOME -->
-<section id="home" class="page active">
+<section id="homePage" class="page active">
 
-<div class="language-switch">
+  <div class="page-title">Asosiy</div>
+  <div class="page-sub">Do‘koningizning bugungi holati</div>
 
-    <button id="engBtn"
-            class="active"
-            onclick="setDirection('en-uz')">
-        English → Uzbek
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">Bugungi savdo</div>
+      <div class="stat-value" id="todayRevenue">0 so‘m</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">📈</div>
+      <div class="stat-label">Bugungi foyda</div>
+      <div class="stat-value" id="todayProfit">0 so‘m</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🛒</div>
+      <div class="stat-label">Sotuvlar</div>
+      <div class="stat-value" id="todaySales">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">📦</div>
+      <div class="stat-label">Ombordagi mahsulot</div>
+      <div class="stat-value" id="totalStock">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">⚠️</div>
+      <div class="stat-label">Kam qolgan</div>
+      <div class="stat-value" id="lowStock">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🏷️</div>
+      <div class="stat-label">Mahsulot turlari</div>
+      <div class="stat-value" id="productCount">0</div>
+    </div>
+
+  </div>
+
+  <div class="quick">
+    <div class="section-title">Tezkor amallar</div>
+
+    <div class="quick-grid">
+
+      <button class="quick-btn" onclick="openProductModal()">
+        ➕ Mahsulot qo‘shish
+        <span>Yangi mahsulot kirimi</span>
+      </button>
+
+      <button class="quick-btn" onclick="openSaleModal()">
+        🛒 Sotuv qilish
+        <span>Mahsulot sotish</span>
+      </button>
+
+      <button class="quick-btn" onclick="showPage('inventoryPage',this)">
+        📦 Ombor
+        <span>Qoldiqni ko‘rish</span>
+      </button>
+
+      <button class="quick-btn" onclick="showPage('reportsPage',this)">
+        📊 Hisobot
+        <span>Daromad va foyda</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="section-title">So‘nggi sotuvlar</div>
+  <div id="recentSales"></div>
+
+</section>
+
+<!-- OMBOR -->
+
+<section id="inventoryPage" class="page">
+
+  <div class="page-title">Ombor</div>
+  <div class="page-sub">Barcha mahsulotlar</div>
+
+  <button class="btn btn-primary" style="width:100%;margin-bottom:12px" onclick="openProductModal()">
+    ➕ Yangi mahsulot
+  </button>
+
+  <div class="search">
+    <input id="searchInput" placeholder="🔎 Mahsulot qidirish..." oninput="renderInventory()">
+  </div>
+
+  <div class="filters" id="categoryFilters"></div>
+
+  <div style="margin-top:13px" id="inventoryList"></div>
+
+</section>
+
+<!-- HISOBOT -->
+
+<section id="reportsPage" class="page">
+
+  <div class="page-title">Hisobot</div>
+  <div class="page-sub">Savdo va foyda statistikasi</div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-label">Jami savdo</div>
+      <div class="stat-value" id="reportRevenue">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Jami foyda</div>
+      <div class="stat-value" id="reportProfit">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Sotuv soni</div>
+      <div class="stat-value" id="reportSales">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Sotilgan dona</div>
+      <div class="stat-value" id="reportUnits">0</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Oxirgi 7 kun</div>
+
+  <div class="report-card">
+    <div class="chart" id="chart"></div>
+  </div>
+
+  <div class="section-title">Eng ko‘p sotilgan mahsulotlar</div>
+  <div id="topProducts"></div>
+
+</section>
+
+<!-- TARIX -->
+
+<section id="historyPage" class="page">
+
+  <div class="page-title">Tarix</div>
+  <div class="page-sub">Barcha sotuvlar tarixi</div>
+
+  <div id="historyList"></div>
+
+</section>
+
+<!-- SOZLAMALAR -->
+
+<section id="settingsPage" class="page">
+
+  <div class="page-title">Sozlamalar</div>
+  <div class="page-sub">Do‘konni boshqarish</div>
+
+  <div class="setting">
+
+    <div class="setting-title">🏪 Do‘kon nomi</div>
+    <div class="setting-desc">Ilovada ko‘rinadigan do‘kon nomi</div>
+
+    <input class="input" id="shopNameInput" placeholder="Do‘kon nomi">
+
+    <button class="btn btn-primary" style="margin-top:9px;width:100%" onclick="saveShopName()">
+      Saqlash
     </button>
 
-    <button id="uzBtn"
-            onclick="setDirection('uz-en')">
-        Uzbek → English
+  </div>
+
+  <div class="setting">
+
+    <div class="setting-title">⚠️ Kam qoldiq chegarasi</div>
+    <div class="setting-desc">Shu miqdordan kam bo‘lsa ogohlantiradi</div>
+
+    <input class="input" id="lowStockInput" type="number" min="0">
+
+    <button class="btn btn-primary" style="margin-top:9px;width:100%" onclick="saveLowStock()">
+      Saqlash
     </button>
 
-</div>
+  </div>
 
+  <div class="setting">
 
-<!-- INPUT -->
-<div class="card">
+    <div class="setting-title">💾 Ma’lumotlarni zaxiralash</div>
+    <div class="setting-desc">Barcha mahsulot va sotuvlarni faylga saqlash</div>
 
-    <div class="card-head">
-
-        <div class="lang-name">
-            <span class="flag" id="inputFlag">🇬🇧</span>
-            <span id="inputLang">English</span>
-        </div>
-
-        <button class="clear"
-                onclick="clearInput()">
-            ×
-        </button>
-
-    </div>
-
-
-    <textarea
-        id="inputText"
-        placeholder="Matnni kiriting..."
-        maxlength="5000"></textarea>
-
-
-    <div class="card-bottom">
-
-        <div class="small-actions">
-
-            <button class="small-action"
-                    onclick="speakInput()">
-                🔊
-            </button>
-
-            <button class="small-action"
-                    onclick="pasteText()">
-                📋
-            </button>
-
-        </div>
-
-        <span id="counter">
-            0/5000
-        </span>
-
-    </div>
-
-</div>
-
-
-<!-- SWAP -->
-<div class="swap-wrap">
-
-    <button class="swap"
-            onclick="swapLanguages()">
-        ↔
+    <button class="btn btn-blue" style="width:100%" onclick="exportData()">
+      ⬇️ Backup olish
     </button>
 
-</div>
+    <label class="btn btn-light" style="display:block;text-align:center;margin-top:8px">
+      ⬆️ Backup tiklash
+      <input type="file" accept=".json" onchange="importData(event)" style="display:none">
+    </label>
 
+  </div>
 
-<!-- RESULT -->
-<div class="card result">
+  <div class="setting">
 
-    <div class="card-head">
+    <div class="setting-title">🗑️ Barcha ma’lumotlarni o‘chirish</div>
+    <div class="setting-desc">Bu amal mahsulotlar va sotuvlarni o‘chiradi.</div>
 
-        <div class="lang-name">
+    <button class="btn btn-red" style="width:100%" onclick="confirmClear()">
+      Barcha ma’lumotlarni o‘chirish
+    </button>
 
-            <span class="flag"
-                  id="outputFlag">
-                🇺🇿
-            </span>
+  </div>
 
-            <span id="outputLang">
-                Uzbek
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div id="resultText"
-         class="result-text">
-
-        <div class="empty-result">
-            Tarjima natijasi shu yerda chiqadi
-        </div>
-
-    </div>
-
-
-    <div class="result-actions">
-
-        <button onclick="copyResult()">
-            📋 Nusxa olish
-        </button>
-
-        <button onclick="saveResult()">
-            🔖 Saqlash
-        </button>
-
-        <button onclick="speakResult()">
-            🔊 Talaffuz
-        </button>
-
-    </div>
+</section>
 
 </div>
-
-
-<button id="translateButton"
-        class="translate-btn"
-        onclick="translateText()">
-
-    ✨ Tarjima qilish
-
-</button>
-
-
-<div class="section-title">
-    Tezkor so‘zlar
-</div>
-
-
-<div class="quick-grid">
-
-    <div class="quick"
-         onclick="quickTranslate('hello')">
-
-        <b>Hello</b>
-        <span>Salom</span>
-
-    </div>
-
-
-    <div class="quick"
-         onclick="quickTranslate('thank you')">
-
-        <b>Thank you</b>
-        <span>Rahmat</span>
-
-    </div>
-
-
-    <div class="quick"
-         onclick="quickTranslate('good morning')">
-
-        <b>Good morning</b>
-        <span>Xayrli tong</span>
-
-    </div>
-
-
-    <div class="quick"
-         onclick="quickTranslate('friend')">
-
-        <b>Friend</b>
-        <span>Do‘st</span>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- SAVED -->
-<section id="saved" class="page">
-
-    <div class="section-title"
-         style="font-size:22px;margin-top:10px;">
-
-        Saqlangan
-
-    </div>
-
-    <div id="savedList"></div>
-
-</section>
-
-
-<!-- HISTORY -->
-<section id="history" class="page">
-
-    <div class="section-title"
-         style="font-size:22px;margin-top:10px;">
-
-        Tarix
-
-    </div>
-
-    <div id="historyList"></div>
-
-</section>
-
-
-<!-- DICTIONARY -->
-<section id="dictionary" class="page">
-
-    <div class="section-title"
-         style="font-size:22px;margin-top:10px;">
-
-        Lug‘at
-
-    </div>
-
-
-    <input
-        id="searchWord"
-        class="search"
-        placeholder="🔍 So‘z qidiring..."
-        oninput="dictionarySearch()"
-    >
-
-
-    <div id="dictionaryResult"></div>
-
-</section>
-
-
-<!-- SETTINGS -->
-<section id="settings" class="page">
-
-    <div class="section-title"
-         style="font-size:22px;margin-top:10px;">
-
-        Sozlamalar
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                🔊
-            </div>
-
-            <div>
-
-                <div class="setting-title">
-                    Talaffuz
-                </div>
-
-                <div class="setting-desc">
-                    Tarjima matnini ovozli eshiting
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div id="speechSwitch"
-             class="switch on"
-             onclick="toggleSwitch(this)">
-
-            <div class="switch-circle"></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                🌐
-            </div>
-
-            <div>
-
-                <div class="setting-title">
-                    Tilni avtomatik aniqlash
-                </div>
-
-                <div class="setting-desc">
-                    Kiritilgan tilni aniqlash
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="switch on"
-             onclick="toggleSwitch(this)">
-
-            <div class="switch-circle"></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                🌙
-            </div>
-
-            <div>
-
-                <div class="setting-title">
-                    Tungi rejim
-                </div>
-
-                <div class="setting-desc">
-                    Ko‘zlar uchun qulayroq
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div id="darkSwitch"
-             class="switch"
-             onclick="toggleDark()">
-
-            <div class="switch-circle"></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="setting"
-         onclick="clearAllData()">
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                🗑️
-            </div>
-
-            <div>
-
-                <div class="setting-title">
-                    Ma’lumotlarni tozalash
-                </div>
-
-                <div class="setting-desc">
-                    Saqlanganlar va tarixni o‘chirish
-                </div>
-
-            </div>
-
-        </div>
-
-        <span>›</span>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                ℹ️
-            </div>
-
-            <div>
-
-                <div class="setting-title">
-                    Ilova haqida
-                </div>
-
-                <div class="setting-desc">
-                    English ↔ Uzbek Translator
-                </div>
-
-            </div>
-
-        </div>
-
-        <span>›</span>
-
-    </div>
-
-</section>
-
 
 <!-- BOTTOM NAV -->
+
 <nav class="bottom-nav">
 
-    <button class="nav-btn active"
-            onclick="showPage('home',this)">
+  <button class="nav-btn active" onclick="showPage('homePage',this)">
+    <div class="nav-icon">⌂</div>
+    Asosiy
+  </button>
 
-        <div class="nav-icon">⌂</div>
-        Asosiy
+  <button class="nav-btn" onclick="showPage('inventoryPage',this)">
+    <div class="nav-icon">📦</div>
+    Ombor
+  </button>
 
-    </button>
+  <button class="nav-btn" onclick="showPage('reportsPage',this)">
+    <div class="nav-icon">📊</div>
+    Hisobot
+  </button>
 
+  <button class="nav-btn" onclick="showPage('historyPage',this)">
+    <div class="nav-icon">🧾</div>
+    Tarix
+  </button>
 
-    <button class="nav-btn"
-            onclick="showPage('saved',this)">
-
-        <div class="nav-icon">🔖</div>
-        Saqlangan
-
-    </button>
-
-
-    <button class="nav-btn"
-            onclick="showPage('history',this)">
-
-        <div class="nav-icon">◷</div>
-        Tarix
-
-    </button>
-
-
-    <button class="nav-btn"
-            onclick="showPage('dictionary',this)">
-
-        <div class="nav-icon">📖</div>
-        Lug‘at
-
-    </button>
-
-
-    <button class="nav-btn"
-            onclick="showPage('settings',this)">
-
-        <div class="nav-icon">⚙</div>
-        Sozlamalar
-
-    </button>
+  <button class="nav-btn" onclick="showPage('settingsPage',this)">
+    <div class="nav-icon">⚙️</div>
+    Sozlama
+  </button>
 
 </nav>
 
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <div class="modal-title">Mahsulot qo‘shish</div>
+      <button class="close" onclick="closeModal('productModal')">✕</button>
+    </div>
+
+    <div class="image-box">
+
+      <img id="imagePreview" class="image-preview">
+
+      <div id="imageText">
+        📷 Mahsulot rasmi
+      </div>
+
+      <div class="image-buttons" style="margin-top:10px">
+
+        <label class="btn btn-light">
+          📷 Kamera
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onchange="handleImage(event)"
+            style="display:none">
+        </label>
+
+        <label class="btn btn-light">
+          🖼️ Galereya
+          <input
+            type="file"
+            accept="image/*"
+            onchange="handleImage(event)"
+            style="display:none">
+        </label>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Mahsulot nomi</label>
+      <input id="productName" class="input" placeholder="Masalan: AirPods g‘ilofi">
+    </div>
+
+    <div class="row">
+
+      <div class="form-group">
+        <label class="form-label">Kategoriya</label>
+
+        <select id="productCategory" class="select">
+          <option>G‘ilof</option>
+          <option>Oyna</option>
+          <option>Zaryadlovchi</option>
+          <option>Quloqchin</option>
+          <option>Kabel</option>
+          <option>Powerbank</option>
+          <option>Soat</option>
+          <option>Sumka</option>
+          <option>Mayda aksessuar</option>
+          <option>Boshqa</option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">SKU</label>
+        <input id="productSku" class="input" placeholder="A-001">
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="form-group">
+        <label class="form-label">Tannarx</label>
+        <input id="productCost" class="input" type="number" min="0" placeholder="0">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Sotuv narxi</label>
+        <input id="productPrice" class="input" type="number" min="0" placeholder="0">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label class="form-label">Kirim miqdori</label>
+
+      <input
+        id="productQty"
+        class="input"
+        type="number"
+        min="1"
+        value="1">
+
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn btn-light" onclick="closeModal('productModal')">
+        Bekor qilish
+      </button>
+
+      <button class="btn btn-primary" onclick="saveProduct()">
+        Saqlash
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
+<!-- SALE MODAL -->
 
-<div id="toast" class="toast"></div>
+<div class="modal" id="saleModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">Sotuv qilish</div>
+
+      <button class="close" onclick="closeModal('saleModal')">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="form-group">
+
+      <label class="form-label">Mahsulot</label>
+
+      <select id="saleProduct" class="select" onchange="updateSaleInfo()"></select>
+
+    </div>
+
+    <div id="saleInfo" style="margin-bottom:10px"></div>
+
+    <div class="form-group">
+
+      <label class="form-label">Miqdor</label>
+
+      <input
+        id="saleQty"
+        class="input"
+        type="number"
+        min="1"
+        value="1"
+        oninput="updateSaleInfo()">
+
+    </div>
+
+    <div class="card" style="background:#f9fafb">
+
+      <div style="display:flex;justify-content:space-between">
+        <span>Jami:</span>
+        <strong id="saleTotal">0 so‘m</strong>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:7px">
+        <span>Foyda:</span>
+        <strong id="saleProfit">0 so‘m</strong>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn btn-light" onclick="closeModal('saleModal')">
+        Bekor qilish
+      </button>
+
+      <button class="btn btn-green" onclick="completeSale()">
+        Sotishni tasdiqlash
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
+<!-- CONFIRM MODAL -->
+
+<div class="modal" id="confirmModal">
+
+  <div class="modal-box">
+
+    <div class="confirm">
+
+      <div style="font-size:45px">⚠️</div>
+
+      <div class="modal-title">Ishonchingiz komilmi?</div>
+
+      <p>
+        Barcha mahsulotlar va sotuvlar o‘chiriladi.
+        Bu amalni qaytarib bo‘lmaydi.
+      </p>
+
+      <div class="form-actions">
+
+        <button class="btn btn-light" onclick="closeModal('confirmModal')">
+          Bekor qilish
+        </button>
+
+        <button class="btn btn-red" onclick="clearAll()">
+          O‘chirish
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 
-/* =====================================================
-   TRANSLATION API
-===================================================== */
+const STORAGE_KEY = "accessorypro_v2";
 
-const TRANSLATION_API =
-    "https://tarjimapro-api.onrender.com/translate";
-
-
-/* =====================================================
-   DICTIONARY
-===================================================== */
-
-const dictionary = {
-
-    "hello":"salom",
-    "hi":"salom",
-    "goodbye":"xayr",
-    "bye":"xayr",
-    "thank you":"rahmat",
-    "thanks":"rahmat",
-    "please":"iltimos",
-    "yes":"ha",
-    "no":"yo‘q",
-
-    "good morning":"xayrli tong",
-    "good afternoon":"xayrli kun",
-    "good evening":"xayrli kech",
-    "good night":"xayrli tun",
-
-    "how are you":"qalaysiz",
-    "i am fine":"men yaxshiman",
-    "my name is":"mening ismim",
-
-    "book":"kitob",
-    "school":"maktab",
-    "teacher":"o‘qituvchi",
-    "student":"o‘quvchi",
-    "friend":"do‘st",
-    "family":"oila",
-    "father":"ota",
-    "mother":"ona",
-    "brother":"aka / uka",
-    "sister":"opa / singil",
-
-    "house":"uy",
-    "home":"uy",
-    "room":"xona",
-    "door":"eshik",
-    "window":"deraza",
-
-    "water":"suv",
-    "food":"ovqat",
-    "bread":"non",
-    "meat":"go‘sht",
-    "apple":"olma",
-
-    "car":"mashina",
-    "phone":"telefon",
-    "computer":"kompyuter",
-    "table":"stol",
-    "chair":"stul",
-    "pen":"ruchka",
-    "pencil":"qalam",
-    "bag":"sumka",
-    "schoolbag":"maktab sumkasi",
-
-    "clothes":"kiyim",
-    "shirt":"ko‘ylak",
-    "trousers":"shim",
-    "skirt":"yubka",
-    "shoes":"oyoq kiyim",
-
-    "happy":"baxtli",
-    "sad":"xafa",
-    "big":"katta",
-    "small":"kichik",
-    "good":"yaxshi",
-    "bad":"yomon",
-    "beautiful":"chiroyli",
-    "fast":"tez",
-    "slow":"sekin",
-    "hot":"issiq",
-    "cold":"sovuq",
-    "new":"yangi",
-    "old":"eski",
-    "young":"yosh",
-
-    "work":"ish",
-    "today":"bugun",
-    "tomorrow":"ertaga",
-    "yesterday":"kecha",
-    "morning":"ertalab",
-    "night":"tun",
-    "day":"kun",
-
-    "where":"qayerda",
-    "what":"nima",
-    "who":"kim",
-    "when":"qachon",
-    "why":"nima uchun",
-    "how":"qanday",
-
-    "water please":"iltimos, suv",
-
-    "i love you":"men seni sevaman",
-    "i like it":"menga bu yoqadi",
-    "i don't know":"men bilmayman",
-
-    "come here":"bu yerga kel",
-    "sit down":"o‘tir",
-    "stand up":"tur",
-
-    "open the door":"eshikni och",
-    "close the door":"eshikni yop",
-
-    "i am going to school":"men maktabga ketyapman",
-    "i play football":"men futbol o‘ynayman",
-
-    "this is my book":"bu mening kitobim",
-    "where is the school":"maktab qayerda",
-    "what is your name":"ismingiz nima",
-    "nice to meet you":"tanishganimdan xursandman"
-
+let db = {
+  products: [],
+  sales: [],
+  settings: {
+    shopName: "Aksessuar do‘koni",
+    lowStock: 3
+  }
 };
 
+let selectedCategory = "Barchasi";
+let currentImage = "";
 
-/* =====================================================
-   REVERSE DICTIONARY
-===================================================== */
+function loadData(){
 
-const reverseDictionary = {};
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-for(const key in dictionary){
-
-    const value =
-        dictionary[key].toLowerCase();
-
-    if(!reverseDictionary[value]){
-        reverseDictionary[value] = key;
-    }
-
-}
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let direction = "en-uz";
-let lastResult = "";
-
-let saved =
-    JSON.parse(
-        localStorage.getItem("savedWords") || "[]"
-    );
-
-let historyData =
-    JSON.parse(
-        localStorage.getItem("translationHistory") || "[]"
-    );
-
-
-/* =====================================================
-   START
-===================================================== */
-
-function startApp(){
-
-    document.getElementById("welcome").style.display="none";
-
-    document.getElementById("mainApp").style.display="block";
-
-}
-
-
-/* =====================================================
-   DIRECTION
-===================================================== */
-
-function setDirection(dir){
-
-    direction = dir;
-
-    document
-        .getElementById("engBtn")
-        .classList.toggle(
-            "active",
-            dir==="en-uz"
-        );
-
-    document
-        .getElementById("uzBtn")
-        .classList.toggle(
-            "active",
-            dir==="uz-en"
-        );
-
-
-    if(dir==="en-uz"){
-
-        document.getElementById("inputFlag").textContent="🇬🇧";
-        document.getElementById("outputFlag").textContent="🇺🇿";
-
-        document.getElementById("inputLang").textContent="English";
-        document.getElementById("outputLang").textContent="Uzbek";
-
-    }else{
-
-        document.getElementById("inputFlag").textContent="🇺🇿";
-        document.getElementById("outputFlag").textContent="🇬🇧";
-
-        document.getElementById("inputLang").textContent="Uzbek";
-        document.getElementById("outputLang").textContent="English";
-
-    }
-
-}
-
-
-/* =====================================================
-   SWAP
-===================================================== */
-
-function swapLanguages(){
-
-    const input =
-        document.getElementById("inputText").value;
-
-    const result = lastResult;
-
-    setDirection(
-        direction==="en-uz"
-            ? "uz-en"
-            : "en-uz"
-    );
-
-    document.getElementById("inputText").value =
-        result || input;
-
-    lastResult = "";
-
-    document.getElementById("resultText").innerHTML =
-        `<div class="empty-result">
-            Tarjima natijasi shu yerda chiqadi
-        </div>`;
-
-    updateCounter();
-
-}
-
-
-/* =====================================================
-   MAIN TRANSLATION
-===================================================== */
-
-async function translateText(){
-
-    const input =
-        document
-            .getElementById("inputText")
-            .value
-            .trim();
-
-
-    if(!input){
-
-        showToast("Avval matn kiriting");
-
-        return;
-    }
-
-
-    const resultBox =
-        document.getElementById("resultText");
-
-    const button =
-        document.getElementById("translateButton");
-
-
-    resultBox.innerHTML = `
-        <div class="loading">
-            <div class="loader"></div>
-            <span>Tarjima qilinmoqda...</span>
-        </div>
-    `;
-
-
-    button.disabled = true;
-    button.classList.add("loading-btn");
-    button.textContent = "⏳ Tarjima qilinmoqda...";
-
+  if(saved){
 
     try{
-
-        const source =
-            direction==="en-uz"
-                ? "en"
-                : "uz";
-
-        const target =
-            direction==="en-uz"
-                ? "uz"
-                : "en";
-
-
-        const controller =
-            new AbortController();
-
-        const timeout =
-            setTimeout(
-                () => controller.abort(),
-                30000
-            );
-
-
-        const response =
-            await fetch(
-                TRANSLATION_API,
-                {
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-
-                    body:JSON.stringify({
-                        text:input,
-                        source:source,
-                        target:target
-                    }),
-
-                    signal:controller.signal
-                }
-            );
-
-
-        clearTimeout(timeout);
-
-
-        let data;
-
-        try{
-            data = await response.json();
-        }catch(e){
-            throw new Error("Server noto‘g‘ri javob qaytardi");
-        }
-
-
-        if(
-            !response.ok ||
-            !data.translatedText
-        ){
-            throw new Error(
-                data.error ||
-                "Tarjima amalga oshmadi"
-            );
-        }
-
-
-        const result =
-            String(data.translatedText).trim();
-
-
-        if(!result){
-            throw new Error("Bo‘sh tarjima qaytdi");
-        }
-
-
-        lastResult = result;
-
-
-        resultBox.innerHTML =
-            escapeHTML(result);
-
-
-        addHistory(
-            input,
-            result,
-            direction
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "Translation error:",
-            error
-        );
-
-
-        lastResult = "";
-
-
-        resultBox.innerHTML = `
-            <div class="empty-result">
-                Tarjima vaqtincha amalga oshmadi.
-            </div>
-        `;
-
-
-        if(error.name==="AbortError"){
-
-            showToast(
-                "Server juda uzoq javob berdi"
-            );
-
-        }else{
-
-            showToast(
-                "Tarjima serveriga ulanib bo‘lmadi"
-            );
-
-        }
-
-    }finally{
-
-        button.disabled = false;
-
-        button.classList.remove(
-            "loading-btn"
-        );
-
-        button.textContent =
-            "✨ Tarjima qilish";
-
-    }
-
-}
-
-
-/* =====================================================
-   LOCAL DICTIONARY
-===================================================== */
-
-function translateEnglishToUzbek(text){
-
-    const lower =
-        text.toLowerCase().trim();
-
-
-    if(dictionary[lower]){
-        return dictionary[lower];
-    }
-
-
-    const words =
-        lower.split(/\s+/);
-
-    const translated=[];
-
-
-    for(const word of words){
-
-        const clean =
-            word.replace(/[.,!?]/g,"");
-
-
-        translated.push(
-            dictionary[clean] || word
-        );
-
-    }
-
-
-    return translated.join(" ");
-
-}
-
-
-function translateUzbekToEnglish(text){
-
-    const lower =
-        text.toLowerCase().trim();
-
-
-    if(reverseDictionary[lower]){
-        return reverseDictionary[lower];
-    }
-
-
-    const words =
-        lower.split(/\s+/);
-
-    const translated=[];
-
-
-    for(const word of words){
-
-        const clean =
-            word.replace(/[.,!?]/g,"");
-
-
-        translated.push(
-            reverseDictionary[clean] || word
-        );
-
-    }
-
-
-    return translated.join(" ");
-
-}
-
-
-/* =====================================================
-   QUICK TRANSLATE
-===================================================== */
-
-function quickTranslate(word){
-
-    document.getElementById("inputText").value =
-        word;
-
-    updateCounter();
-
-    translateText();
-
-}
-
-
-/* =====================================================
-   COPY
-===================================================== */
-
-async function copyResult(){
-
-    if(!lastResult){
-
-        showToast(
-            "Nusxa olish uchun tarjima qiling"
-        );
-
-        return;
-    }
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            lastResult
-        );
-
-        showToast("Nusxa olindi ✓");
+      db = JSON.parse(saved);
+
+      if(!db.products) db.products=[];
+      if(!db.sales) db.sales=[];
+      if(!db.settings){
+        db.settings={
+          shopName:"Aksessuar do‘koni",
+          lowStock:3
+        };
+      }
 
     }catch(e){
 
-        showToast(
-            "Nusxa olishda xatolik"
-        );
+      console.log(e);
 
     }
+
+  }
+
+  updateAll();
 
 }
 
+function saveData(){
 
-/* =====================================================
-   SAVE
-===================================================== */
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(db)
+  );
 
-function saveResult(){
+}
 
-    const input =
-        document
-            .getElementById("inputText")
-            .value
-            .trim();
+function money(value){
 
+  return Number(value || 0).toLocaleString("uz-UZ")+" so‘m";
 
-    if(!input || !lastResult){
+}
 
-        showToast(
-            "Avval tarjima qiling"
-        );
+function todayKey(date=new Date()){
 
-        return;
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,"0");
+  const d=String(date.getDate()).padStart(2,"0");
+
+  return `${y}-${m}-${d}`;
+
+}
+
+function formatDate(date){
+
+  return new Date(date).toLocaleString(
+    "uz-UZ",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
     }
+  );
 
+}
 
-    saved.unshift({
+/* NAVIGATION */
 
-        input:input,
+function showPage(id,button){
 
-        result:lastResult,
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
 
-        direction:direction,
+  document.getElementById(id)
+    .classList.add("active");
 
-        time:new Date().toLocaleString(
-            "uz-UZ"
-        )
+  document.querySelectorAll(".nav-btn")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  updateAll();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+/* MODALS */
+
+function openModal(id){
+
+  document.getElementById(id)
+    .classList.add("show");
+
+}
+
+function closeModal(id){
+
+  document.getElementById(id)
+    .classList.remove("show");
+
+}
+
+function openProductModal(){
+
+  currentImage="";
+
+  document.getElementById("productName").value="";
+  document.getElementById("productSku").value="";
+  document.getElementById("productCost").value="";
+  document.getElementById("productPrice").value="";
+  document.getElementById("productQty").value="1";
+
+  document.getElementById("imagePreview").style.display="none";
+
+  document.getElementById("imageText").style.display="block";
+
+  openModal("productModal");
+
+}
+
+function openSaleModal(productId=null){
+
+  const select=document.getElementById("saleProduct");
+
+  select.innerHTML="";
+
+  const available=db.products.filter(p=>p.stock>0);
+
+  if(!available.length){
+
+    toast("Omborda sotish mumkin bo‘lgan mahsulot yo‘q.");
+
+    return;
+
+  }
+
+  available.forEach(p=>{
+
+    const option=document.createElement("option");
+
+    option.value=p.id;
+
+    option.textContent=
+      p.name+
+      " — "+
+      money(p.price)+
+      " ("+
+      p.stock+
+      " dona)";
+
+    select.appendChild(option);
+
+  });
+
+  if(productId){
+    select.value=productId;
+  }
+
+  document.getElementById("saleQty").value="1";
+
+  updateSaleInfo();
+
+  openModal("saleModal");
+
+}
+
+/* IMAGE */
+
+function handleImage(event){
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  if(!file.type.startsWith("image/")){
+
+    toast("Faqat rasm tanlang.");
+
+    return;
+
+  }
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+
+    currentImage=e.target.result;
+
+    const img=document.getElementById("imagePreview");
+
+    img.src=currentImage;
+
+    img.style.display="block";
+
+    document.getElementById("imageText").style.display="none";
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+/* PRODUCTS */
+
+function saveProduct(){
+
+  const name=
+    document.getElementById("productName")
+    .value.trim();
+
+  const category=
+    document.getElementById("productCategory")
+    .value;
+
+  const sku=
+    document.getElementById("productSku")
+    .value.trim();
+
+  const cost=
+    Number(document.getElementById("productCost").value);
+
+  const price=
+    Number(document.getElementById("productPrice").value);
+
+  const qty=
+    Number(document.getElementById("productQty").value);
+
+  if(!name){
+
+    toast("Mahsulot nomini kiriting.");
+
+    return;
+
+  }
+
+  if(price<=0){
+
+    toast("Sotuv narxini kiriting.");
+
+    return;
+
+  }
+
+  if(qty<=0){
+
+    toast("Miqdor noto‘g‘ri.");
+
+    return;
+
+  }
+
+  const existing=db.products.find(p=>
+    p.name.toLowerCase()===name.toLowerCase() &&
+    Number(p.price)===price
+  );
+
+  if(existing){
+
+    existing.stock+=qty;
+
+    if(cost>0) existing.cost=cost;
+
+    if(currentImage) existing.image=currentImage;
+
+    if(sku) existing.sku=sku;
+
+    existing.category=category;
+
+    toast("Mahsulot omborga qo‘shildi.");
+
+  }else{
+
+    db.products.unshift({
+
+      id:Date.now().toString(),
+
+      name:name,
+
+      category:category,
+
+      sku:sku,
+
+      cost:cost,
+
+      price:price,
+
+      stock:qty,
+
+      image:currentImage || "",
+
+      createdAt:new Date().toISOString()
 
     });
 
+    toast("Yangi mahsulot qo‘shildi.");
 
-    saved =
-        saved.slice(0,100);
+  }
 
+  saveData();
 
-    localStorage.setItem(
-        "savedWords",
-        JSON.stringify(saved)
-    );
+  closeModal("productModal");
 
-
-    renderSaved();
-
-    showToast(
-        "Tarjima saqlandi ✓"
-    );
+  updateAll();
 
 }
 
+/* INVENTORY */
 
-/* =====================================================
-   HISTORY
-===================================================== */
+function getCategories(){
 
-function addHistory(
-    input,
-    result,
-    dir
-){
+  const categories=[
+    "Barchasi",
+    ...new Set(db.products.map(p=>p.category))
+  ];
 
-    historyData.unshift({
-
-        input:input,
-
-        result:result,
-
-        direction:dir,
-
-        time:new Date().toLocaleTimeString(
-            "uz-UZ",
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        )
-
-    });
-
-
-    historyData =
-        historyData.slice(0,100);
-
-
-    localStorage.setItem(
-        "translationHistory",
-        JSON.stringify(historyData)
-    );
+  return categories;
 
 }
 
+function renderCategories(){
 
-/* =====================================================
-   SAVED
-===================================================== */
+  const box=document.getElementById("categoryFilters");
 
-function renderSaved(){
+  box.innerHTML="";
 
-    const container =
-        document.getElementById(
-            "savedList"
-        );
+  getCategories().forEach(category=>{
 
+    const button=document.createElement("button");
 
-    if(saved.length===0){
+    button.className=
+      "filter "+
+      (category===selectedCategory ? "active":"");
 
-        container.innerHTML = `
-            <div class="empty-list">
-                <div>🔖</div>
-                Hali saqlangan tarjimalar yo‘q.
-            </div>
-        `;
+    button.textContent=category;
 
-        return;
+    button.onclick=function(){
+
+      selectedCategory=category;
+
+      renderCategories();
+
+      renderInventory();
+
+    };
+
+    box.appendChild(button);
+
+  });
+
+}
+
+function renderInventory(){
+
+  const list=document.getElementById("inventoryList");
+
+  const search=
+    document.getElementById("searchInput")
+    ?.value
+    .toLowerCase()
+    .trim() || "";
+
+  let products=[...db.products];
+
+  if(selectedCategory!=="Barchasi"){
+
+    products=products.filter(
+      p=>p.category===selectedCategory
+    );
+
+  }
+
+  if(search){
+
+    products=products.filter(p=>
+      p.name.toLowerCase().includes(search) ||
+      (p.sku||"").toLowerCase().includes(search)
+    );
+
+  }
+
+  list.innerHTML="";
+
+  if(!products.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">📦</div>
+        Mahsulot topilmadi
+      </div>
+    `;
+
+    return;
+
+  }
+
+  products.forEach(p=>{
+
+    let stockClass="good";
+
+    if(p.stock<=0) stockClass="empty";
+    else if(p.stock<=db.settings.lowStock) stockClass="low";
+
+    const card=document.createElement("div");
+
+    card.className="card";
+
+    card.innerHTML=`
+
+      <div class="product">
+
+        ${
+          p.image
+          ?
+          `<img class="product-img" src="${p.image}">`
+          :
+          `<div class="product-img"
+            style="display:flex;align-items:center;justify-content:center;font-size:30px">
+            📦
+          </div>`
+        }
+
+        <div class="product-info">
+
+          <div class="product-name">${escapeHtml(p.name)}</div>
+
+          <div class="product-meta">
+            ${escapeHtml(p.category)}
+            ${p.sku ? " • "+escapeHtml(p.sku):""}
+          </div>
+
+          <div class="product-price">
+            ${money(p.price)}
+          </div>
+
+          <div class="stock ${stockClass}">
+            Omborda: ${p.stock} dona
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-blue btn-small"
+          ${p.stock<=0 ? "disabled":""}
+          onclick="openSaleModal('${p.id}')">
+          Sotish
+        </button>
+
+      </div>
+
+    `;
+
+    list.appendChild(card);
+
+  });
+
+}
+
+/* SALES */
+
+function updateSaleInfo(){
+
+  const id=document.getElementById("saleProduct").value;
+
+  const product=db.products.find(p=>p.id===id);
+
+  if(!product)return;
+
+  let qty=
+    Number(document.getElementById("saleQty").value)||1;
+
+  if(qty>product.stock){
+
+    qty=product.stock;
+
+    document.getElementById("saleQty").value=qty;
+
+  }
+
+  const total=product.price*qty;
+
+  const profit=(product.price-product.cost)*qty;
+
+  document.getElementById("saleInfo").innerHTML=`
+
+    <div style="
+      background:#f3f4f6;
+      border-radius:13px;
+      padding:12px;
+      font-size:12px">
+
+      <strong>${escapeHtml(product.name)}</strong><br>
+
+      Omborda: ${product.stock} dona<br>
+
+      Tannarx: ${money(product.cost)}<br>
+
+      Sotuv narxi: ${money(product.price)}
+
+    </div>
+
+  `;
+
+  document.getElementById("saleTotal")
+    .textContent=money(total);
+
+  document.getElementById("saleProfit")
+    .textContent=money(profit);
+
+}
+
+function completeSale(){
+
+  const id=document.getElementById("saleProduct").value;
+
+  const product=db.products.find(p=>p.id===id);
+
+  if(!product){
+
+    toast("Mahsulot topilmadi.");
+
+    return;
+
+  }
+
+  const qty=
+    Number(document.getElementById("saleQty").value);
+
+  if(qty<=0){
+
+    toast("Miqdor noto‘g‘ri.");
+
+    return;
+
+  }
+
+  if(qty>product.stock){
+
+    toast("Omborda buncha mahsulot yo‘q.");
+
+    return;
+
+  }
+
+  const total=product.price*qty;
+
+  const profit=(product.price-product.cost)*qty;
+
+  product.stock-=qty;
+
+  db.sales.unshift({
+
+    id:Date.now().toString(),
+
+    productId:product.id,
+
+    productName:product.name,
+
+    qty:qty,
+
+    cost:product.cost,
+
+    price:product.price,
+
+    total:total,
+
+    profit:profit,
+
+    date:new Date().toISOString()
+
+  });
+
+  saveData();
+
+  closeModal("saleModal");
+
+  toast("Sotuv muvaffaqiyatli saqlandi.");
+
+  updateAll();
+
+}
+
+/* DASHBOARD */
+
+function todaySales(){
+
+  const key=todayKey();
+
+  return db.sales.filter(
+    s=>todayKey(new Date(s.date))===key
+  );
+
+}
+
+function renderDashboard(){
+
+  const sales=todaySales();
+
+  const revenue=sales.reduce(
+    (sum,s)=>sum+s.total,
+    0
+  );
+
+  const profit=sales.reduce(
+    (sum,s)=>sum+s.profit,
+    0
+  );
+
+  const units=sales.reduce(
+    (sum,s)=>sum+s.qty,
+    0
+  );
+
+  const stock=db.products.reduce(
+    (sum,p)=>sum+p.stock,
+    0
+  );
+
+  const low=db.products.filter(
+    p=>p.stock<=db.settings.lowStock
+  ).length;
+
+  document.getElementById("todayRevenue")
+    .textContent=money(revenue);
+
+  document.getElementById("todayProfit")
+    .textContent=money(profit);
+
+  document.getElementById("todaySales")
+    .textContent=sales.length+" / "+units+" dona";
+
+  document.getElementById("totalStock")
+    .textContent=stock;
+
+  document.getElementById("lowStock")
+    .textContent=low;
+
+  document.getElementById("productCount")
+    .textContent=db.products.length;
+
+  const recent=document.getElementById("recentSales");
+
+  recent.innerHTML="";
+
+  if(!db.sales.length){
+
+    recent.innerHTML=`
+
+      <div class="empty">
+
+        <div class="empty-icon">🧾</div>
+
+        Hali sotuvlar mavjud emas
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  db.sales.slice(0,5).forEach(s=>{
+
+    const div=document.createElement("div");
+
+    div.className="card";
+
+    div.innerHTML=`
+
+      <div class="history-row">
+
+        <div class="history-icon">✓</div>
+
+        <div class="history-info">
+
+          <div class="history-name">
+            ${escapeHtml(s.productName)}
+          </div>
+
+          <div class="history-meta">
+            ${s.qty} dona • ${formatDate(s.date)}
+          </div>
+
+        </div>
+
+        <div class="history-price">
+          ${money(s.total)}
+        </div>
+
+      </div>
+
+    `;
+
+    recent.appendChild(div);
+
+  });
+
+}
+
+/* REPORTS */
+
+function renderReports(){
+
+  const revenue=db.sales.reduce(
+    (sum,s)=>sum+s.total,
+    0
+  );
+
+  const profit=db.sales.reduce(
+    (sum,s)=>sum+s.profit,
+    0
+  );
+
+  const units=db.sales.reduce(
+    (sum,s)=>sum+s.qty,
+    0
+  );
+
+  document.getElementById("reportRevenue")
+    .textContent=money(revenue);
+
+  document.getElementById("reportProfit")
+    .textContent=money(profit);
+
+  document.getElementById("reportSales")
+    .textContent=db.sales.length;
+
+  document.getElementById("reportUnits")
+    .textContent=units;
+
+  renderChart();
+
+  renderTopProducts();
+
+}
+
+function renderChart(){
+
+  const chart=document.getElementById("chart");
+
+  chart.innerHTML="";
+
+  const days=[];
+
+  for(let i=6;i>=0;i--){
+
+    const d=new Date();
+
+    d.setDate(d.getDate()-i);
+
+    days.push(d);
+
+  }
+
+  const values=days.map(d=>{
+
+    const key=todayKey(d);
+
+    return db.sales
+      .filter(s=>todayKey(new Date(s.date))===key)
+      .reduce((sum,s)=>sum+s.total,0);
+
+  });
+
+  const max=Math.max(...values,1);
+
+  days.forEach((day,index)=>{
+
+    const wrap=document.createElement("div");
+
+    wrap.className="bar-wrap";
+
+    const height=(values[index]/max)*135;
+
+    wrap.innerHTML=`
+
+      <div style="
+        font-size:8px;
+        color:#777;
+        margin-bottom:4px">
+        ${values[index] ? Math.round(values[index]/1000)+"k":""}
+      </div>
+
+      <div
+        class="bar"
+        style="height:${Math.max(height,3)}px">
+      </div>
+
+      <div class="bar-label">
+        ${day.getDate()}
+      </div>
+
+    `;
+
+    chart.appendChild(wrap);
+
+  });
+
+}
+
+function renderTopProducts(){
+
+  const box=document.getElementById("topProducts");
+
+  box.innerHTML="";
+
+  const map={};
+
+  db.sales.forEach(s=>{
+
+    if(!map[s.productName]){
+      map[s.productName]=0;
     }
 
+    map[s.productName]+=s.qty;
 
-    container.innerHTML =
-        saved.map(
-            (item,index)=>`
+  });
 
-            <div class="list-item">
+  const top=Object.entries(map)
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,10);
 
-                <div class="word-info">
+  if(!top.length){
 
-                    <div class="word-icon">
-                        ${
-                            item.direction==="en-uz"
-                            ? "🇬🇧"
-                            : "🇺🇿"
-                        }
-                    </div>
+    box.innerHTML=`
 
-                    <div>
+      <div class="empty">
+        <div class="empty-icon">📊</div>
+        Hali ma’lumot yo‘q
+      </div>
 
-                        <div class="word-main">
-                            ${escapeHTML(item.input)}
-                        </div>
+    `;
 
-                        <div class="word-sub">
-                            ${escapeHTML(item.result)}
-                        </div>
+    return;
 
-                    </div>
+  }
 
-                </div>
+  top.forEach((item,index)=>{
 
+    const div=document.createElement("div");
 
-                <button
-                    class="delete-btn"
-                    onclick="deleteSaved(${index})">
-                    🗑
-                </button>
+    div.className="card";
 
-            </div>
+    div.innerHTML=`
 
-        `
-        ).join("");
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between">
+
+        <div>
+
+          <strong>
+            ${index+1}. ${escapeHtml(item[0])}
+          </strong>
+
+          <div style="
+            color:#777;
+            font-size:12px;
+            margin-top:4px">
+
+            ${item[1]} dona sotilgan
+
+          </div>
+
+        </div>
+
+        <div style="font-size:24px">
+          ${index===0 ? "🥇":
+            index===1 ? "🥈":
+            index===2 ? "🥉":"🏷️"}
+        </div>
+
+      </div>
+
+    `;
+
+    box.appendChild(div);
+
+  });
 
 }
 
-
-function deleteSaved(index){
-
-    saved.splice(index,1);
-
-    localStorage.setItem(
-        "savedWords",
-        JSON.stringify(saved)
-    );
-
-    renderSaved();
-
-    showToast(
-        "O‘chirildi"
-    );
-
-}
-
-
-/* =====================================================
-   HISTORY
-===================================================== */
+/* HISTORY */
 
 function renderHistory(){
 
-    const container =
-        document.getElementById(
-            "historyList"
-        );
+  const list=document.getElementById("historyList");
 
+  list.innerHTML="";
 
-    if(historyData.length===0){
+  if(!db.sales.length){
 
-        container.innerHTML = `
-            <div class="empty-list">
-                <div>◷</div>
-                Tarjima tarixi hali bo‘sh.
-            </div>
-        `;
+    list.innerHTML=`
 
-        return;
-    }
+      <div class="empty">
 
+        <div class="empty-icon">🧾</div>
 
-    container.innerHTML =
-        historyData.map(
-            item=>`
+        Sotuv tarixi bo‘sh
 
-            <div class="list-item">
-
-                <div class="word-info">
-
-                    <div class="word-icon">
-                        🔄
-                    </div>
-
-                    <div>
-
-                        <div class="word-main">
-                            ${escapeHTML(item.input)}
-                        </div>
-
-                        <div class="word-sub">
-                            ${escapeHTML(item.result)}
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <small style="color:#9aa4b4;">
-                    ${escapeHTML(item.time)}
-                </small>
-
-            </div>
-
-        `
-        ).join("");
-
-}
-
-
-/* =====================================================
-   DICTIONARY
-===================================================== */
-
-function dictionarySearch(){
-
-    const q =
-        document
-            .getElementById("searchWord")
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    const result =
-        document.getElementById(
-            "dictionaryResult"
-        );
-
-
-    if(!q){
-
-        result.innerHTML="";
-
-        return;
-    }
-
-
-    let found=null;
-
-
-    for(const key in dictionary){
-
-        if(
-            key===q ||
-            key.includes(q)
-        ){
-
-            found={
-                word:key,
-                translation:dictionary[key]
-            };
-
-            break;
-        }
-
-    }
-
-
-    if(!found){
-
-        result.innerHTML=`
-            <div class="empty-list">
-                <div>🔍</div>
-                Bu so‘z lug‘atda topilmadi.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    result.innerHTML=`
-
-        <div class="dictionary-card">
-
-            <div class="dictionary-word">
-                ${escapeHTML(found.word)}
-            </div>
-
-            <div class="part">
-                English → Uzbek
-            </div>
-
-            <div class="meaning">
-                <b>
-                    ${escapeHTML(found.translation)}
-                </b>
-            </div>
-
-            <div class="example">
-
-                <b>Misol:</b><br>
-
-                I know this word.<br>
-
-                <span style="color:#8d98a9;">
-                    — Men bu so‘zni bilaman.
-                </span>
-
-            </div>
-
-            <div style="
-                display:flex;
-                gap:8px;
-                margin-top:16px;
-            ">
-
-                <button
-                    style="
-                        flex:1;
-                        background:#eef3fa;
-                        border-radius:13px;
-                        padding:12px;
-                    "
-                    onclick="
-                        speakWord(
-                            '${escapeAttribute(found.word)}'
-                        )
-                    ">
-
-                    🔊 Talaffuz
-
-                </button>
-
-
-                <button
-                    style="
-                        flex:1;
-                        background:#1670ff;
-                        color:white;
-                        border-radius:13px;
-                        padding:12px;
-                    "
-                    onclick="
-                        saveDictionaryWord(
-                            '${escapeAttribute(found.word)}',
-                            '${escapeAttribute(found.translation)}'
-                        )
-                    ">
-
-                    🔖 Saqlash
-
-                </button>
-
-            </div>
-
-        </div>
+      </div>
 
     `;
 
-}
+    return;
 
+  }
 
-function saveDictionaryWord(
-    word,
-    translation
-){
+  db.sales.forEach(s=>{
 
-    saved.unshift({
+    const div=document.createElement("div");
 
-        input:word,
+    div.className="card";
 
-        result:translation,
+    div.innerHTML=`
 
-        direction:"en-uz",
+      <div class="history-row">
 
-        time:new Date().toLocaleString(
-            "uz-UZ"
-        )
+        <div class="history-icon">✓</div>
 
-    });
+        <div class="history-info">
 
+          <div class="history-name">
+            ${escapeHtml(s.productName)}
+          </div>
 
-    saved =
-        saved.slice(0,100);
+          <div class="history-meta">
+            ${s.qty} dona •
+            ${formatDate(s.date)}
+          </div>
 
+          <div class="history-meta">
+            Foyda: ${money(s.profit)}
+          </div>
 
-    localStorage.setItem(
-        "savedWords",
-        JSON.stringify(saved)
-    );
+        </div>
 
+        <div class="history-price">
+          ${money(s.total)}
+        </div>
 
-    renderSaved();
+      </div>
 
-    showToast(
-        "So‘z saqlandi ✓"
-    );
+    `;
 
-}
+    list.appendChild(div);
 
-
-/* =====================================================
-   SPEECH
-===================================================== */
-
-function speakInput(){
-
-    const text =
-        document
-            .getElementById("inputText")
-            .value
-            .trim();
-
-
-    if(!text){
-
-        showToast("Matn yo‘q");
-
-        return;
-    }
-
-
-    speak(
-        text,
-        direction==="en-uz"
-            ? "en-US"
-            : "uz-UZ"
-    );
+  });
 
 }
 
+/* SETTINGS */
 
-function speakResult(){
+function renderSettings(){
 
-    if(!lastResult){
+  document.getElementById("shopNameInput")
+    .value=db.settings.shopName;
 
-        showToast(
-            "Tarjima yo‘q"
-        );
+  document.getElementById("lowStockInput")
+    .value=db.settings.lowStock;
 
-        return;
-    }
-
-
-    speak(
-        lastResult,
-        direction==="en-uz"
-            ? "uz-UZ"
-            : "en-US"
-    );
+  document.getElementById("headerShop")
+    .textContent=db.settings.shopName;
 
 }
 
+function saveShopName(){
 
-function speakWord(word){
+  const value=
+    document.getElementById("shopNameInput")
+    .value.trim();
 
-    speak(
-        word,
-        "en-US"
-    );
+  if(!value){
 
-}
+    toast("Do‘kon nomini kiriting.");
 
+    return;
 
-function speak(text,lang){
+  }
 
-    if(
-        !("speechSynthesis" in window)
-    ){
+  db.settings.shopName=value;
 
-        showToast(
-            "Bu qurilmada talaffuz mavjud emas"
-        );
+  saveData();
 
-        return;
-    }
+  renderSettings();
 
-
-    const utterance =
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-
-    utterance.lang=lang;
-
-    utterance.rate=.85;
-
-    speechSynthesis.cancel();
-
-    speechSynthesis.speak(
-        utterance
-    );
+  toast("Do‘kon nomi saqlandi.");
 
 }
 
+function saveLowStock(){
 
-/* =====================================================
-   PASTE
-===================================================== */
+  const value=
+    Number(document.getElementById("lowStockInput").value);
 
-async function pasteText(){
+  if(value<0){
+
+    toast("Qiymat noto‘g‘ri.");
+
+    return;
+
+  }
+
+  db.settings.lowStock=value;
+
+  saveData();
+
+  toast("Chegara saqlandi.");
+
+  updateAll();
+
+}
+
+/* BACKUP */
+
+function exportData(){
+
+  const data=JSON.stringify(
+    db,
+    null,
+    2
+  );
+
+  const blob=new Blob(
+    [data],
+    {type:"application/json"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;
+
+  const date=todayKey();
+
+  a.download=
+    "accessory-pro-backup-"+date+".json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  toast("Backup fayli tayyor.");
+
+}
+
+function importData(event){
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
 
     try{
 
-        const text =
-            await navigator.clipboard.readText();
+      const imported=JSON.parse(e.target.result);
 
+      if(
+        !imported.products ||
+        !imported.sales ||
+        !imported.settings
+      ){
 
-        document.getElementById(
-            "inputText"
-        ).value=text;
+        throw new Error();
 
+      }
 
-        updateCounter();
+      db=imported;
 
-        showToast(
-            "Matn qo‘yildi ✓"
-        );
+      saveData();
 
-    }catch(e){
+      updateAll();
 
-        showToast(
-            "Clipboardga ruxsat berilmadi"
-        );
+      toast("Backup muvaffaqiyatli tiklandi.");
 
-    }
+    }catch(err){
 
-}
-
-
-/* =====================================================
-   CLEAR
-===================================================== */
-
-function clearInput(){
-
-    document.getElementById(
-        "inputText"
-    ).value="";
-
-
-    document.getElementById(
-        "resultText"
-    ).innerHTML=`
-        <div class="empty-result">
-            Tarjima natijasi shu yerda chiqadi
-        </div>
-    `;
-
-
-    lastResult="";
-
-    updateCounter();
-
-}
-
-
-/* =====================================================
-   COUNTER
-===================================================== */
-
-document
-    .getElementById("inputText")
-    .addEventListener(
-        "input",
-        updateCounter
-    );
-
-
-function updateCounter(){
-
-    const value =
-        document
-            .getElementById("inputText")
-            .value
-            .length;
-
-
-    document.getElementById(
-        "counter"
-    ).textContent =
-        value + "/5000";
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function showPage(
-    page,
-    button
-){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(
-            p=>p.classList.remove("active")
-        );
-
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(
-            b=>b.classList.remove("active")
-        );
-
-
-    if(button){
-
-        button.classList.add(
-            "active"
-        );
-
-    }else{
-
-        const navButtons =
-            document.querySelectorAll(
-                ".nav-btn"
-            );
-
-
-        navButtons.forEach(
-            b=>{
-
-                if(
-                    b.textContent
-                        .toLowerCase()
-                        .includes(page)
-                ){
-
-                    b.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
+      toast("Backup fayli noto‘g‘ri.");
 
     }
 
+  };
 
-    if(page==="saved"){
-        renderSaved();
+  reader.readAsText(file);
+
+}
+
+/* CLEAR */
+
+function confirmClear(){
+
+  openModal("confirmModal");
+
+}
+
+function clearAll(){
+
+  db={
+    products:[],
+    sales:[],
+    settings:{
+      shopName:"Aksessuar do‘koni",
+      lowStock:3
     }
+  };
 
+  saveData();
 
-    if(page==="history"){
-        renderHistory();
-    }
+  closeModal("confirmModal");
 
-}
+  updateAll();
 
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function toggleSwitch(el){
-
-    el.classList.toggle("on");
+  toast("Barcha ma’lumotlar o‘chirildi.");
 
 }
 
+/* HELPERS */
 
-function toggleDark(){
+function toast(message){
 
-    document.body.classList.toggle(
-        "dark"
-    );
+  const el=document.getElementById("toast");
 
+  el.textContent=message;
 
-    const sw =
-        document.getElementById(
-            "darkSwitch"
-        );
+  el.classList.add("show");
 
+  clearTimeout(window.toastTimer);
 
-    sw.classList.toggle(
-        "on"
-    );
+  window.toastTimer=setTimeout(()=>{
 
+    el.classList.remove("show");
 
-    localStorage.setItem(
-        "darkMode",
-        document.body.classList.contains(
-            "dark"
-        )
-    );
+  },2500);
 
 }
 
+function escapeHtml(text){
 
-function loadDark(){
-
-    const dark =
-        localStorage.getItem(
-            "darkMode"
-        )==="true";
-
-
-    if(dark){
-
-        document.body.classList.add(
-            "dark"
-        );
-
-
-        document
-            .getElementById(
-                "darkSwitch"
-            )
-            .classList.add(
-                "on"
-            );
-
-    }
+  return String(text ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
+function updateHeaderDate(){
 
-/* =====================================================
-   CLEAR DATA
-===================================================== */
+  const now=new Date();
 
-function clearAllData(){
-
-    if(
-        confirm(
-            "Saqlangan tarjimalar va tarixni o‘chirishni xohlaysizmi?"
-        )
-    ){
-
-        saved=[];
-
-        historyData=[];
-
-
-        localStorage.removeItem(
-            "savedWords"
-        );
-
-        localStorage.removeItem(
-            "translationHistory"
-        );
-
-
-        renderSaved();
-
-        renderHistory();
-
-
-        showToast(
-            "Ma’lumotlar tozalandi ✓"
-        );
-
-    }
+  document.getElementById("headerDate")
+    .textContent=
+      now.toLocaleDateString(
+        "uz-UZ",
+        {
+          day:"2-digit",
+          month:"short"
+        }
+      );
 
 }
 
+function updateAll(){
 
-/* =====================================================
-   TOAST
-===================================================== */
+  renderDashboard();
 
-function showToast(message){
+  renderCategories();
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+  renderInventory();
 
+  renderReports();
 
-    toast.textContent =
-        message;
+  renderHistory();
 
+  renderSettings();
 
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-
-    window.toastTimer =
-        setTimeout(
-            ()=>{
-                toast.classList.remove(
-                    "show"
-                );
-            },
-            2000
-        );
+  updateHeaderDate();
 
 }
 
+/* START */
 
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHTML(text){
-
-    return String(text)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-function escapeAttribute(text){
-
-    return String(text)
-
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-
-        .replace(
-            /'/g,
-            "\\'"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        );
-
-}
-
-
-/* =====================================================
-   INIT
-===================================================== */
-
-loadDark();
-
-renderSaved();
-
-renderHistory();
-
-updateCounter();
-
-setDirection("en-uz");
+loadData();
 
 </script>
 
